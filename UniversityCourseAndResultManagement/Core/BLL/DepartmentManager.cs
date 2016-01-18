@@ -31,5 +31,10 @@ namespace UniversityCourseAndResultManagement.Core.BLL
             }
 
         }
+
+        public List<Department> GetAllDepartments()
+        {
+            return departmentGateway.GetAllDepartments();
+        }
     }
 }

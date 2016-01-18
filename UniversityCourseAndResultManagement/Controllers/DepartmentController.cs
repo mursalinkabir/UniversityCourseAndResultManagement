@@ -24,6 +24,12 @@ namespace UniversityCourseAndResultManagement.Controllers
             ViewBag.Message = departmentManager.SaveDepartment(department);
             return View();
         }
+
+        public ActionResult ShowDepartment()
+        {
+            var departments = departmentManager.GetAllDepartments();
+            return View(departments);
+        }
         public ActionResult Index()
         {
             return View();

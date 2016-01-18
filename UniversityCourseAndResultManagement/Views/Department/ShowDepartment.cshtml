@@ -1,0 +1,34 @@
+﻿@model IEnumerable<UniversityCourseAndResultManagement.Models.Department>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowDepartment</title>
+</head>
+    <body>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>
+        <div>
+            <fieldset>
+                <legend>View All Departments</legend>
+                <table>
+                    <tr><th bgcolor="#e0e0d1">Code</th><th bgcolor="#e0e0d1">Name</thbgcolor></tr>
+                    @foreach (var items in Model) 
+                    {  <tr>
+                           <td>@items.Code</td>
+                           <td>@items.Name</td>
+                       </tr>}
+               
+                </table>
+            </fieldset> 
+        </div>
+    </body>
+</html>

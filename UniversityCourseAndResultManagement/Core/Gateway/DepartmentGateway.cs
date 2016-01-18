@@ -55,5 +55,27 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
                 return false;
             }
         }
+        public List<Department> GetAllDepartments()
+        {
+            connection.ConnectionString = connectionString;
+
+            string query = "SELECT * FROM Department Order By Code";
+            SqlCommand command = new SqlCommand(query, connection);
+
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            List<Department> departmentlist = new List<Department>();
+            while (reader.Read())
+            {
+                Department department=new Department();
+                department.Code = reader["Code"].ToString();
+                department.Name = reader["Name"].ToString();
+                departmentlist.Add(department);
+            }
+
+            reader.Close();
+            connection.Close();
+            return departmentlist;
+        }
     }
 }
