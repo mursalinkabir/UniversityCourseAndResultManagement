@@ -55,6 +55,12 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
                 return false;
             }
         }
+        //GetAlldepartments method
+
+
+
+
+
         public List<Department> GetAllDepartments()
         {
             connection.ConnectionString = connectionString;
@@ -78,5 +84,6 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
             connection.Close();
             return departmentlist;
         }
+
     }
 }
