@@ -165,10 +165,12 @@
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Core\BLL\CourseManager.cs" />
     <Compile Include="Core\BLL\DepartmentManager.cs" />
-    <Compile Include="Core\BLL\DropdownManager.cs" />
+    <Compile Include="Core\BLL\DesignationManager.cs" />
+    <Compile Include="Core\BLL\SemesterManager.cs" />
     <Compile Include="Core\Gateway\CourseGateway.cs" />
     <Compile Include="Core\Gateway\DepartmentGateway.cs" />
-    <Compile Include="Core\Gateway\DropdownGateway.cs" />
+    <Compile Include="Core\Gateway\DesignationGateway.cs" />
+    <Compile Include="Core\Gateway\SemesterGateway.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
