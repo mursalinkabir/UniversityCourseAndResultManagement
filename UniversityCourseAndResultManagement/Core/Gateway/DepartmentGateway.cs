@@ -68,6 +68,7 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
             while (reader.Read())
             {
                 Department department=new Department();
+                department.Id = Convert.ToInt32(reader["Id"].ToString());
                 department.Code = reader["Code"].ToString();
                 department.Name = reader["Name"].ToString();
                 departmentlist.Add(department);
