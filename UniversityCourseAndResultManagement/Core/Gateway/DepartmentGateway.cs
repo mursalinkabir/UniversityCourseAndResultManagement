@@ -55,7 +55,7 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
                 return false;
             }
         }
-        //GetAlldepartments method
+        //GetAlldepartments method     
 
 
 
