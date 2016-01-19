@@ -55,12 +55,8 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
                 return false;
             }
         }
-        //GetAlldepartments method     
 
-
-
-
-
+        //  GetALLDeaprtments
         public List<Department> GetAllDepartments()
         {
             connection.ConnectionString = connectionString;
