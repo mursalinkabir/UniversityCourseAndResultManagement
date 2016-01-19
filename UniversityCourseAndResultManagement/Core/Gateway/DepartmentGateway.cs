@@ -81,5 +81,7 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
             return departmentlist;
         }
 
+        /// Get alldepartments
+
     }
 }
