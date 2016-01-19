@@ -12,7 +12,7 @@ namespace UniversityCourseAndResultManagement.Controllers
     public class CourseController : Controller
     {
         DepartmentManager departmentManager=new DepartmentManager();
-        SemesterManager semesterManager=new SemesterManager();
+        DropdownManager semesterManager=new DropdownManager();
         CourseManager courseManager=new CourseManager();
         public ActionResult SaveCourse()
         {

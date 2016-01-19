@@ -28,7 +28,7 @@ namespace UniversityCourseAndResultManagement.Models
         [Required(ErrorMessage = "Please Enter credit Amount")]
         [RegularExpression(@"^\d+.\d{0,2}$",ErrorMessage = "Enter a non negative Number")]
         public int Credit { get; set; }
-        [Required(ErrorMessage = "Please Select a Course Name")]
+        
         public string CourseId { get; set; }
     }
 }

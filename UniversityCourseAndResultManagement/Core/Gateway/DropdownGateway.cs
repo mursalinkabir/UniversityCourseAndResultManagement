@@ -8,7 +8,7 @@ using UniversityCourseAndResultManagement.Models;
 
 namespace UniversityCourseAndResultManagement.Core.Gateway
 {
-    public class SemesterGateway
+    public class DropdownGateway
     {
         private string connectionString =
             WebConfigurationManager.ConnectionStrings["UniversityCRManagementConnectionDB"].ConnectionString;
@@ -36,6 +36,31 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
             reader.Close();
             connection.Close();
             return semesterlist;
+        }
+
+        public List<Designation> GetAllDesignations()
+        {
+            connection.ConnectionString = connectionString;
+
+            string query = "SELECT * FROM Designation";
+            SqlCommand command = new SqlCommand(query, connection);
+
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            List<Designation> designationlist = new List<Designation>();
+            while (reader.Read())
+            {
+
+                Designation designation = new Designation();
+                designation.Id = Convert.ToInt32(reader["Id"].ToString());
+
+                designation.Name = reader["Name"].ToString();
+                designationlist.Add(designation);
+            }
+
+            reader.Close();
+            connection.Close();
+            return designationlist;
         }
     }
 }
