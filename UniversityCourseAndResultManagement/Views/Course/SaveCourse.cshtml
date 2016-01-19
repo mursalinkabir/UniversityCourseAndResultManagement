@@ -1,0 +1,121 @@
+﻿@using UniversityCourseAndResultManagement.Models
+@model UniversityCourseAndResultManagement.Models.Course
+
+@{
+    Layout = null;
+    List<Department> Departments = ViewBag.Departments;
+    List<Semester> Semesters = ViewBag.Semesters;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Save Course</title>
+        <style>
+            .field-validation-error {
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            @using (Html.BeginForm())
+            {
+                <fieldset>
+                    <legend>Save Course</legend>
+                    <table>
+                        <tr>
+                            <td>
+                                @Html.LabelFor(m => m.Code)
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.Code)
+
+                            </td>
+                            <td>@Html.ValidationMessageFor(m => m.Code)</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.LabelFor(m => m.Name)
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.Name)
+
+                            </td>
+                            <td>@Html.ValidationMessageFor(m => m.Name)</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.LabelFor(m => m.Credit)
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.Credit)
+
+                            </td>
+                            <td>@Html.ValidationMessageFor(m => m.Credit)</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.LabelFor(m => m.Description)
+                            </td>
+                            <td>
+                                @Html.TextAreaFor(m => m.Description)
+
+                            </td>
+                            <td>@Html.ValidationMessageFor(m => m.Description)</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.LabelFor(m => m.DepartmentId)
+                            </td>
+                            <td>
+                                <select id="DepartmentId" name="DepartmentId">
+                                    
+                                    @foreach (var sub in Departments)
+                                    {
+                                        <option value="@sub.Id">@sub.Name</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                @Html.ValidationMessageFor(m => m.DepartmentId)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.LabelFor(m => m.SemesterId )
+                            </td>
+                            <td>
+                                <select id="SemesterId" name="SemesterId">
+                                    
+                                    @foreach (var sem in Semesters)
+                                    {
+                                
+                                        <option value="@sem.Id">@sem.Name</option>
+                                    }
+                                </select>
+
+                            </td>
+                            <td>
+                                @Html.ValidationMessageFor(m => m.SemesterId)
+                            </td>
+                        </tr>
+           
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="submit" value="Save" />
+                            </td>
+                
+                        </tr>
+                        <tr><td>@ViewBag.Message</td></tr>
+                    </table>
+                </fieldset>
+            }
+        </div>
+        <script src="~/Scripts/jquery-2.2.0.js"></script>
+        <script src="~/Scripts/jquery.validate.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    </body>
+</html>

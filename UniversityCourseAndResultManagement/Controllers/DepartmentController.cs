@@ -30,6 +30,8 @@ namespace UniversityCourseAndResultManagement.Controllers
             var departments = departmentManager.GetAllDepartments();
             return View(departments);
         }
+
+       
         public ActionResult Index()
         {
             return View();
