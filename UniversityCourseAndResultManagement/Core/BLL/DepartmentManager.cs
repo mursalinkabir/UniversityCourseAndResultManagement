@@ -13,24 +13,27 @@ namespace UniversityCourseAndResultManagement.Core.BLL
 
         public string SaveDepartment(Department department)
         {
-            if (departmentGateway.IsDepartmentExists(department))
-            {
-                return "Department Name And Code must be unique !!!";
-            }
-            else
-            {
-                if (departmentGateway.SaveDepartment(department) > 0)
-
+           if (departmentGateway.IsDepartmentExists(department))
                 {
-                    return "Save successfully !!!";
+                    return "Department Name And Code must be unique !!!";
                 }
                 else
                 {
-                    return "Insertion failure !!!";
+                    if (departmentGateway.SaveDepartment(department) > 0)
+                    {
+                        return "Save successfully";
+                    }
+                    else
+                    {
+                        return "Insertion failure !!!";
+                    }
                 }
+                
             }
+        
+           
 
-        }
+       
 
         public List<Department> GetAllDepartments()
         {

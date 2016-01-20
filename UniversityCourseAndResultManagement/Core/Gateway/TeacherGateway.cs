@@ -20,8 +20,7 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
             string query = "SELECT * FROM Course WHERE (Code=@Code And Name =  @Name )";
 
 
-
-
+            Course course=new Course();
             SqlCommand command = new SqlCommand();
             command.CommandText = query;
             command.Connection = connection;

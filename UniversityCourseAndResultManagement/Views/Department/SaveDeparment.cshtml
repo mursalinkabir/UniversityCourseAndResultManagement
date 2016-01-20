@@ -7,10 +7,18 @@
 <!DOCTYPE html>
 
 <html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>SaveDeparment</title>
-</head>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>SaveDeparment</title>
+    </head>
+<style>
+    .field-validation-error {
+        color: red;
+        font: bold;
+       
+    }
+</style>
+
 <body>
     <div>
         @using (Html.BeginForm()){<fieldset>
@@ -35,7 +43,7 @@
                                               <td>
                                                   @if (ViewBag.Message != null)
                                                         {
-                                                            <p>@ViewBag.Message</p>
+                                                            <p><h2>@ViewBag.Message</h2></p>
                                                         }
                                               </td>
                                           </tr>

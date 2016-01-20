@@ -17,7 +17,7 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
         public bool IsCourseExists(Course course)
         {
             connection.ConnectionString = connectionString;
-            string query = "SELECT * FROM Course WHERE (Code=@Code And Name =  @Name )";
+            string query = "SELECT * FROM Course WHERE (Code=@Code OR Name =  @Name )";
 
 
 
