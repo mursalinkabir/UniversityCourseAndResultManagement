@@ -1,0 +1,109 @@
+﻿@model UniversityCourseAndResultManagement.Models.Teacher
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Save Teacher</title>
+</head>
+<body>
+<div>
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend>Save Teacher</legend>
+            <table>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.Name)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.Name)
+
+                    </td>
+                    @*<a href="~/Controllers/TeacherController.cs">~/Controllers/TeacherController.cs</a>*@
+                    <td>@Html.ValidationMessageFor(m => m.Name)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.Address)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.Address)
+
+                    </td>
+                    <td>@Html.ValidationMessageFor(m => m.Address)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.Email)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.Email)
+
+                    </td>
+                    <td>@Html.ValidationMessageFor(m => m.Email)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.ContactNo)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.ContactNo)
+
+                    </td>
+                    <td>@Html.ValidationMessageFor(m => m.ContactNo)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.DesignationId)
+                    </td>
+                    <td>
+                        @Html.DropDownList("DesignationId", new SelectList(ViewBag.Designations, "Value", "Text"))
+
+                    </td>
+                    <td>@Html.ValidationMessageFor(m => m.DesignationId)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.DepartmentId)
+                    </td>
+                    <td>
+                        @Html.DropDownList("DepartmentId", new SelectList(ViewBag.Departments, "Value", "Text"))
+
+                    </td>
+                    <td>@Html.ValidationMessageFor(m => m.DepartmentId)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.Credit)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.Credit)
+
+                    </td>
+                    <td>@Html.ValidationMessageFor(m => m.Credit)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Save"/>
+                    </td>
+
+                </tr>
+                <tr><td>@ViewBag.Message</td></tr>
+            </table>
+
+        </fieldset>
+    }
+
+</div>
+    <script src="~/Scripts/jquery-2.2.0.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+</body>
+</html>
