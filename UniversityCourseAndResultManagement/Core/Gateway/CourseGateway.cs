@@ -49,7 +49,7 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
         {
             connection.ConnectionString = connectionString;
 
-            string query = "INSERT INTO Course VALUES(@Code,@Name,@Credit,@Description,@DepartmentId,@SemesterId)";
+            string query = "INSERT INTO Course (Code,Name,Credit,Description,DepartmentId,SemesterId) VALUES(@Code,@Name,@Credit,@Description,@DepartmentId,@SemesterId)";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.Clear();
