@@ -8,12 +8,12 @@ using UniversityCourseAndResultManagement.Models;
 
 namespace UniversityCourseAndResultManagement.Controllers
 {
-    
+
     public class CourseController : Controller
     {
-        DepartmentManager departmentManager=new DepartmentManager();
-        SemestersManager semesterManager=new SemestersManager();
-        CourseManager courseManager=new CourseManager();
+        DepartmentManager departmentManager = new DepartmentManager();
+        SemestersManager semesterManager = new SemestersManager();
+        CourseManager courseManager = new CourseManager();
         public ActionResult SaveCourse()
         {
 
@@ -23,11 +23,11 @@ namespace UniversityCourseAndResultManagement.Controllers
             List<Semester> semesters = semesterManager.GetAllSemester();
             ViewBag.Semesters = semesters;
             return View();
-            
+
         }
         [HttpPost]
         public ActionResult SaveCourse(Course course)
-        { 
+        {
 
 
             List<Department> departments = departmentManager.GetAllDepartments();
@@ -42,5 +42,5 @@ namespace UniversityCourseAndResultManagement.Controllers
         {
             return View();
         }
-	}
+    }
 }

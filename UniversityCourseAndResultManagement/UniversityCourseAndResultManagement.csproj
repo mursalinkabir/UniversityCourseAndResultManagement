@@ -241,10 +241,10 @@
     <Content Include="Views\Department\SaveDeparment.cshtml" />
     <Content Include="Views\Department\ShowDepartment.cshtml" />
     <Content Include="Views\Course\SaveCourse.cshtml" />
+    <Content Include="Views\Teacher\SaveTeacher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Teacher\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

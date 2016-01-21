@@ -22,11 +22,15 @@ namespace UniversityCourseAndResultManagement.Models
         [Required(ErrorMessage = "Enter the Phone Number")]
         public string ContactNo { get; set; }
         [Required(ErrorMessage = "Select a Designation")]
+        [DisplayName("Designation")]
         public int DesignationId { get; set; }
         [Required(ErrorMessage = "Please Select a Department")]
+        [DisplayName("Department")]
         public string DepartmentId { get; set; }
         [Required(ErrorMessage = "Please Enter credit Amount")]
-        [RegularExpression(@"^\d+.\d{0,2}$",ErrorMessage = "Enter a non negative Number")]
+        //[RegularExpression(@"^\d+.\d{0,2}$",ErrorMessage = "Enter a non negative Number")]
+        [Range(0, int.MaxValue, ErrorMessage = "Please enter valid Non Negative Number")]
+        [DisplayName("Credit to be taken")]
         public int Credit { get; set; }
         
         public string CourseId { get; set; }

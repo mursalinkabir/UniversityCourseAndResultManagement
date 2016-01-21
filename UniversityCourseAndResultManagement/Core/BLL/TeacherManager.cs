@@ -11,16 +11,15 @@ namespace UniversityCourseAndResultManagement.Core.BLL
     {
         private TeacherGateway teacherGateway = new TeacherGateway();
 
-        public string SaveDepartment(Teacher teacher)
+        public string SaveTeacher(Teacher teacher)
         {
-            if (teacherGateway.IsTeacherExists(teacher))
+            if (teacherGateway.IsEmailUnique(teacher))
             {
-                return "Teacher Name must be unique !!!";
+                return "Teacher Email must be unique !!!";
             }
             else
             {
-                if (teacherGateway.IsEmailUnique(teacher))
-                {
+                
                     if (teacherGateway.SaveTeacher(teacher) > 0)
                     {
                         return "Save successfully !!!";
@@ -29,11 +28,8 @@ namespace UniversityCourseAndResultManagement.Core.BLL
                     {
                         return "Insertion failure !!!";
                     }
-                }
-                else
-                {
-                    return "Email is not unique";
-                }
+                
+              
                
             }
 
