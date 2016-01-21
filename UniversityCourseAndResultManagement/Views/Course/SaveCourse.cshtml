@@ -69,7 +69,8 @@
                         <td>
                             @Html.LabelFor(m => m.DepartmentId)
                         </td>
-                        <td>
+                        <td>@Html.DropDownListFor(model => model.DepartmentId, new SelectList(ViewBag.Departments, "Id", "Name"), "-- Select Department--")</td>
+                        @*<td>
                             <select id="DepartmentId" name="DepartmentId">
 
                                 @foreach (var sub in Departments)
@@ -77,7 +78,7 @@
                                     <option value="@sub.Id">@sub.Name</option>
                                 }
                             </select>
-                        </td>
+                        </td>*@
                         <td>
                             @Html.ValidationMessageFor(m => m.DepartmentId)
                         </td>
@@ -86,7 +87,8 @@
                         <td>
                             @Html.LabelFor(m => m.SemesterId)
                         </td>
-                        <td>
+                        <td>@Html.DropDownListFor(model => model.SemesterId, new SelectList(ViewBag.Semesters, "Id", "Name"), "-- Select Semester--")</td>
+                        @*<td>
                             <select id="SemesterId" name="SemesterId">
 
                                 @foreach (var sem in Semesters)
@@ -96,7 +98,7 @@
                                 }
                             </select>
 
-                        </td>
+                        </td>*@
                         <td>
                             @Html.ValidationMessageFor(m => m.SemesterId)
                         </td>
