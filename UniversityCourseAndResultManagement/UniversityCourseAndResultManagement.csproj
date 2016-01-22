@@ -160,15 +160,18 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\CourseViewController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Core\BLL\CourseManager.cs" />
+    <Compile Include="Core\BLL\CourseViewManager.cs" />
     <Compile Include="Core\BLL\DepartmentManager.cs" />
     <Compile Include="Core\BLL\DesignationManager.cs" />
     <Compile Include="Core\BLL\SemestersManager.cs" />
     <Compile Include="Core\BLL\TeacherManager.cs" />
     <Compile Include="Core\Gateway\CourseGateway.cs" />
+    <Compile Include="Core\Gateway\CourseViewGateway.cs" />
     <Compile Include="Core\Gateway\DepartmentGateway.cs" />
     <Compile Include="Core\Gateway\DesignationGateway.cs" />
     <Compile Include="Core\Gateway\SemestersGateway.cs" />
@@ -178,6 +181,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\CourseView.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Designation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -243,6 +247,7 @@
     <Content Include="Views\Course\SaveCourse.cshtml" />
     <Content Include="Views\Teacher\SaveTeacher.cshtml" />
     <Content Include="Views\Course\CourseAssign.cshtml" />
+    <Content Include="Views\CourseView\ViewCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,89 @@
+﻿@using UniversityCourseAndResultManagement.Models
+@model UniversityCourseAndResultManagement.Models.Course
+
+
+
+@{
+    Layout = null;
+    var courses = ViewBag.Courses;
+    var depts = ViewBag.Departments;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewCourse</title>
+</head>
+<body>
+    <style>
+        table, th, td {
+            border: 2px solid black;
+        }
+    </style>
+    <div>
+        <fieldset>
+            <legend> View Course Statics</legend>
+
+            <form method="Post">
+
+                <table>
+                    <tr>
+                        <td>
+                            Deparment:
+                        </td>
+                        <td>
+                            <select id="DepartmentId" name="DepartmentId" required title="Please select department">
+                                <option value="">---Select Department---</option>
+                                @foreach (var sub in depts)
+                                {
+                                    <option value="@sub.Id">@sub.Name</option>
+                                }
+                            </select>
+                        </td>
+                        <td> <input type="submit" id="Search" value="Search" /></td>
+                    </tr>
+                </table>
+
+            </form>
+
+            <br />
+            <br />
+
+
+            <table>
+
+
+
+                @if (ViewBag.PostBack)
+                {
+
+                    <tr>Course Information</tr>
+                    <tr><th bgcolor="#e0e0d1">Code</th><th bgcolor="#e0e0d1">Name/Title</th><th bgcolor="#e0e0d1">Semester</th><th bgcolor="#e0e0d1">Assigned To</th></tr>
+                    foreach (var items in courses)
+                    {
+                        <tr>
+                            <td>@items.Code</td>
+                            <td>@items.Name</td>
+                            <td>@items.SemesterName</td>
+                            <td>@items.TeacherName</td>
+                        </tr>
+                    }
+                }
+
+
+
+
+
+
+            </table>
+
+        </fieldset>
+
+    </div>
+    <script src="~/Scripts/jquery-2.2.0.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+</body>
+</html>
