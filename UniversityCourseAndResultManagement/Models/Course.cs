@@ -27,6 +27,12 @@ namespace UniversityCourseAndResultManagement.Models
         [Required(ErrorMessage = "Select Semester")]
         [DisplayName("Semester")]
         public int SemesterId { get; set; }
+        //change by sayed
+        public int TecaherId { get; set; }
+        public string SemesterName { get; set; }
+        public string TeacherName { get; set; }
+        public string DepartmentName { get; set; }
 
+        //change by sayed
     }
 }
