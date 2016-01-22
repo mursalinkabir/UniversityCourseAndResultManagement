@@ -1,0 +1,109 @@
+﻿@model  UniversityCourseAndResultManagement.Models.Course
+
+@{
+    ViewBag.Title = "Course Assign";
+
+}
+
+<h2>title</h2>
+<div class="container">
+    <form method="POST">
+      
+        <fieldset>
+            <legend>Course Assign</legend>
+            <table>
+                <tr>
+                    <td>@Html.LabelFor(x => x.DepartmentId)</td>
+                    <td>@Html.DropDownListFor(x => x.DepartmentId, new SelectList(ViewBag.Departments, "Value", "Text"))</td>
+                    <td>@Html.ValidationMessageFor(m => m.DepartmentId)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(x => x.TeacherId)
+                    </td>
+                    <td>
+                        <select name="TeacherId" id="TeacherId">
+                            <option value="">Select...</option>
+
+                        </select>
+                    </td>
+                    <td>@Html.ValidationMessageFor(x => x.TeacherId)</td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="Credit">Credit to be Taken </label>
+                    </td>
+                    <td>
+                        <input type="text" name="Credit" id="Credit" value="">
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td>
+                        <label for="RemainCredit">Remainig Credit </label>
+                    </td>
+                    <td>
+                        <input type="text" name="RemainCredit" id="RemainCredit" value="">
+                    </td>
+
+                </tr>
+
+            </table>
+        </fieldset>
+        </form>
+
+</div>
+@section scripts
+{
+
+    <script>
+        $(document).ready(function() {
+
+            $("#DepartmentId").change(function() {
+                
+                var deptId = $("#DepartmentId").val();
+                //alert("Alert from JS");
+                $("#TeacherId").empty();
+                $("#TeacherId").append('<option value=>' + 'SELECT...' + '</option>');
+                var jsondata = { departmentId: deptId };
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetAllTeacherbyDeptId", "Course")',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(jsondata),
+                    success: function(data) {
+                        //alert(data);
+                        $.each(data, function(key, value) {
+                            //alert(key);
+                            $("#TeacherId").append('<option value=' + value.Id + '>' + value.Name + '</option>');
+
+                        });
+                    }
+                });
+            });
+
+            $("#TeacherId").change(function () {
+                //debugger;
+                var SelectedTeacher = $("#TeacherId").val();
+                var jsondata = { teacherId: SelectedTeacher };
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetTeacherInfoById", "Course")',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(jsondata),
+                    success: function (data) {
+                        //debugger;
+                        var testdata = data;
+                        alert(data);
+                        
+                            //alert(key);
+                            $("#Credit").val(data.Credit),
+                                $("#RemainCredit").val(data.RemainCredit);
+
+                        
+                    }
+                });
+            });
+        });
+    </script>
+}

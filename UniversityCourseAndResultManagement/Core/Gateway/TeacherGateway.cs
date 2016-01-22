@@ -108,7 +108,32 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
 
         public Teacher GetTeacherInfoById(int teacherId)
         {
+            connection.ConnectionString = connectionString;
+            string query = "SELECT * FROM Teacher WHERE Id=@teacherId";
+
+
+
+            SqlCommand command = new SqlCommand();
+            command.CommandText = query;
+            command.Connection = connection;
+            command.Parameters.Add("teacherId", SqlDbType.Int);
+            command.Parameters["teacherId"].Value = teacherId;
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            //List<Teacher> teacherList = new List<Teacher>();
+
+            Teacher teacher = new Teacher();
+            while (reader.Read())
+            {
                 
+                teacher.Id = (int)reader["Id"];
+                teacher.Credit = (int)reader["Credit"];
+                teacher.RemainCredit = (int)reader["RemainCredit"];
+                
+            }
+            reader.Close();
+            connection.Close();
+            return teacher;
         }
     }
 }
