@@ -114,10 +114,23 @@ namespace UniversityCourseAndResultManagement.Controllers
             return Json(teacherList, JsonRequestBehavior.AllowGet);
             
         }
+        public JsonResult GetAllCoursebyDeptId(int departmentId)
+        {
+            var courseList = courseManager.GetAllCoursebyDeptId(departmentId);
+            return Json(courseList, JsonRequestBehavior.AllowGet);
+
+        }
         public JsonResult GetTeacherInfoById(int teacherId)
         {
             Teacher teacher = teacherManager.GetTeacherInfoById(teacherId);
             return Json(teacher, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult GetCourseInfoById(int courseId)
+        {
+            Course course = courseManager.GetCourseInfoById(courseId);
+            return Json(course, JsonRequestBehavior.AllowGet);
 
         }
     }

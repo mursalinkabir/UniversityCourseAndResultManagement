@@ -23,7 +23,7 @@
                     </td>
                     <td>
                         <select name="TeacherId" id="TeacherId">
-                            <option value="">Select...</option>
+                            
 
                         </select>
                     </td>
@@ -44,6 +44,42 @@
                     </td>
                     <td>
                         <input type="text" name="RemainCredit" id="RemainCredit" value="">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(x => x.Code)</td>
+                    <td>
+                        <select name="Code" id="Code">
+
+
+                        </select>
+                    </td>
+                    <td>@Html.ValidationMessageFor(m => m.Code)</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="Name">Course Name </label>
+                    </td>
+                    <td>
+                        <input type="text" name="Name" id="Name" value="">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <label for="Credit">Credit </label>
+                    </td>
+                    <td>
+                        <input type="text" name="CourseCredit" id="CourseCredit" value="">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Assign" />
                     </td>
 
                 </tr>
@@ -80,6 +116,26 @@
                         });
                     }
                 });
+                //course code loading part
+
+               
+                $("#Code").empty();
+                $("#Code").append('<option value=>' + 'SELECT...' + '</option>');
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetAllCoursebyDeptId", "Course")',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(jsondata),
+                    success: function (data) {
+                        //alert(data);
+                        $.each(data, function (key, value) {
+                            //alert(key);
+                            $("#Code").append('<option value=' + value.Id + '>' + value.Code + '</option>');
+
+                        });
+                    }
+                });
+
             });
 
             $("#TeacherId").change(function () {
@@ -93,14 +149,38 @@
                     data: JSON.stringify(jsondata),
                     success: function (data) {
                         //debugger;
-                        var testdata = data;
-                        alert(data);
+                       
+                       // alert(data);
                         
                             //alert(key);
                             $("#Credit").val(data.Credit),
                                 $("#RemainCredit").val(data.RemainCredit);
 
                         
+                    }
+                });
+            });
+
+            // course code select part
+            $("#Code").change(function () {
+                //debugger;
+                var Selectedval = $("#Code").val();
+                var jsondata = { courseId: Selectedval };
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetCourseInfoById", "Course")',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(jsondata),
+                    success: function (data) {
+                        //debugger;
+                        
+                        //alert(data);
+
+                        //alert(key);
+                        $("#CourseCredit").val(data.Credit),
+                            $("#Name").val(data.Name);
+
+
                     }
                 });
             });

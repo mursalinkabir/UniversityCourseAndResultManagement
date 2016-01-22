@@ -38,5 +38,14 @@ namespace UniversityCourseAndResultManagement.Core.BLL
             return courseGateway.GetAllCoursesByDepartment(DepartmentId);
         }
         //change by sayed
+        public List<Course> GetAllCoursebyDeptId(int departmentId)
+        {
+            return courseGateway.GetAllCoursebyDeptId(departmentId);
+        }
+
+        public Course GetCourseInfoById(int courseId)
+        {
+            return courseGateway.GetCourseInfoById(courseId);
+        }
     }
 }

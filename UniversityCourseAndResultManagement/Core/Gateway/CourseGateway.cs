@@ -109,5 +109,64 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
             return null;
         }
         //change by sayed
+        public List<Course> GetAllCoursebyDeptId(int departmentId)
+        {
+            connection.ConnectionString = connectionString;
+
+            string query = "SELECT * FROM Course WHERE (DepartmentId=@DepartmentId)";
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.Add("DepartmentId", SqlDbType.Int);
+            command.Parameters["DepartmentId"].Value = departmentId;
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            List<Course> courselist = new List<Course>();
+            while (reader.Read())
+            {
+                Course course = new Course();
+                course.Id =(int) reader["id"];
+                course.Code = reader["Code"].ToString();
+                course.Name = reader["Name"].ToString();
+                course.Credit = (decimal) reader["Credit"];
+          
+
+
+                courselist.Add(course);
+            }
+
+            reader.Close();
+            connection.Close();
+
+            return courselist;
+        }
+
+        public Course GetCourseInfoById(int courseId)
+        {
+            connection.ConnectionString = connectionString;
+            string query = "SELECT * FROM Course WHERE id=@courseId";
+
+
+
+            SqlCommand command = new SqlCommand();
+            command.CommandText = query;
+            command.Connection = connection;
+            command.Parameters.Add("courseId", SqlDbType.Int);
+            command.Parameters["courseId"].Value = courseId;
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            //List<Teacher> teacherList = new List<Teacher>();
+
+            Course course = new Course();
+            while (reader.Read())
+            {
+
+                course.Credit = (decimal)reader["Credit"];
+                course.Name = reader["Name"].ToString();
+
+            }
+            reader.Close();
+            connection.Close();
+            return course;
+        }
     }
 }
