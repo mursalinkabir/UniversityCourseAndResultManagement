@@ -60,6 +60,41 @@ namespace UniversityCourseAndResultManagement.Controllers
             ViewBag.Message = courseManager.Save(course);
             return View();
         }
+        //Change by sayed
+        [HttpGet]
+        public ActionResult ShowCourse()
+        {
+
+
+            var departments = departmentManager.GetAllDepartments();
+
+
+            ViewBag.Departments = departments;
+
+            ViewBag.PostBack = false;
+            return View();
+
+        }
+        [HttpPost]
+        public ActionResult ShowCourse(int DepartmentId)
+        {
+            var courses = courseManager.GetAllCoursesByDepartment(DepartmentId);
+            ViewBag.Courses = courses;
+
+
+            var departments = departmentManager.GetAllDepartments();
+            ViewBag.Departments = departments;
+
+            ViewBag.PostBack = true;
+
+
+            return View();
+
+        }
+
+        //Change by sayed
+
+
 
         public ActionResult Index()
         {
