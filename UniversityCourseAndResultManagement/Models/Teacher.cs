@@ -9,6 +9,7 @@ namespace UniversityCourseAndResultManagement.Models
 {
     public class Teacher
     {
+        public int Id { get; set; }
         [Required(ErrorMessage = "Name Field is Required")]
         [StringLength(50)]
         public string Name { get; set; }
@@ -32,7 +33,7 @@ namespace UniversityCourseAndResultManagement.Models
         [Range(0, int.MaxValue, ErrorMessage = "Please enter valid Non Negative Number")]
         [DisplayName("Credit to be taken")]
         public int Credit { get; set; }
-        
-        public string CourseId { get; set; }
+
+        public int RemainCredit { get; set; }
     }
 }

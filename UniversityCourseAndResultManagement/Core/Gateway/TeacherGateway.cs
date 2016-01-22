@@ -47,7 +47,7 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
         {
             connection.ConnectionString = connectionString;
 
-            string query = "INSERT INTO Teacher (Name,Address,Email,ContactNo,DesignationId,DepartmentId,Credit) VALUES(@Name,@Address,@Email,@ContactNo,@DesignationId,@DepartmentId,@Credit)";
+            string query = "INSERT INTO Teacher (Name,Address,Email,ContactNo,DesignationId,DepartmentId,Credit,RemainCredit) VALUES(@Name,@Address,@Email,@ContactNo,@DesignationId,@DepartmentId,@Credit,@RemainCredit)";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.Clear();
@@ -65,14 +65,50 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
             command.Parameters["DepartmentId"].Value = teacher.DepartmentId;
             command.Parameters.Add("Credit", SqlDbType.Int);
             command.Parameters["Credit"].Value = teacher.Credit;
-            //command.Parameters.Add("CourseId", SqlDbType.Int);
-            //command.Parameters["CourseId"].Value = teacher.CourseId;
+            command.Parameters.Add("RemainCredit", SqlDbType.Int);
+            command.Parameters["RemainCredit"].Value = teacher.Credit;
 
 
             connection.Open();
             int rowAffected = command.ExecuteNonQuery();
             connection.Close();
             return rowAffected;
+        }
+
+        public List<Teacher> GetAllTeacherbyDeptID(int Id)
+        {
+            connection.ConnectionString = connectionString;
+            string query = "SELECT * FROM Teacher WHERE DepartmentId=@Id";
+
+
+         
+            SqlCommand command = new SqlCommand();
+            command.CommandText = query;
+            command.Connection = connection;
+            command.Parameters.Add("Id", SqlDbType.Int);
+            command.Parameters["Id"].Value = Id;
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            List<Teacher> teacherList= new List<Teacher>();
+           
+
+            while (reader.Read())
+            {
+              Teacher  teacher = new Teacher();
+                teacher.Id = (int)reader["Id"];
+                teacher.Name = reader["Name"].ToString();
+                teacher.Credit =(int) reader["Credit"];
+                teacher.RemainCredit = (int)reader["RemainCredit"];
+                teacherList.Add(teacher);
+            }
+            reader.Close();
+            connection.Close();
+            return teacherList;
+        }
+
+        public Teacher GetTeacherInfoById(int teacherId)
+        {
+                
         }
     }
 }

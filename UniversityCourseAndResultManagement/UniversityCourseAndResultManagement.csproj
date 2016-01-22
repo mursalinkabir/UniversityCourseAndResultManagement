@@ -242,6 +242,7 @@
     <Content Include="Views\Department\ShowDepartment.cshtml" />
     <Content Include="Views\Course\SaveCourse.cshtml" />
     <Content Include="Views\Teacher\SaveTeacher.cshtml" />
+    <Content Include="Views\Course\CourseAssign.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

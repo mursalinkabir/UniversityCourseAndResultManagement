@@ -34,5 +34,15 @@ namespace UniversityCourseAndResultManagement.Core.BLL
             }
 
         }
+
+        public List<Teacher> GetAllTeacherbyDeptID(int Id)
+        {
+            return teacherGateway.GetAllTeacherbyDeptID(Id);
+        }
+
+        public Teacher GetTeacherInfoById(int teacherId)
+        {
+            return teacherGateway.GetTeacherInfoById(teacherId);
+        }
     }
 }
