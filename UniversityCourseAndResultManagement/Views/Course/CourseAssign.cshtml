@@ -84,15 +84,26 @@
 
                 </tr>
                 <tr>
+                    <td>
+                        <label for="datepicker">Date </label>
+                    </td>
+                    <td>
+                        <input type="text" name="datepicker" id="datepicker" value="">
+                    </td>
+                </tr>
+                <tr>
                     <td>@ViewBag.Message1</td>
                     @*testing*@
                 </tr>
 
             </table>
         </fieldset>
-        </form>
+    </form>
 
 </div>
+
+
+
 @section scripts
 {
 
@@ -181,13 +192,23 @@
                         //alert(data);
 
                         //alert(key);
-                        $("#CourseCredit").val(data.Credit),
-                            $("#Name").val(data.Name);
+                        $("#Name").val(data.Name);
+                      var remainCredit=  $("#RemainCredit").val(data.RemainCredit);
+                        var creditminus = $("#CourseCredit").val(data.Credit);
+                            
 
+                            var finalcredit = remainCredit - creditminus;
 
+                           
+                            $("#RemainCredit").val(finalcredit);
                     }
                 });
             });
+        });
+        $(function () {
+            var $j = jQuery.noConflict();
+            $j("#datepicker").datepicker();
+            
         });
     </script>
 }
