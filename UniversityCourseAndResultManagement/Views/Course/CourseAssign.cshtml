@@ -193,10 +193,13 @@
 
                         //alert(key);
                         $("#Name").val(data.Name);
-                      var remainCredit=  $("#RemainCredit").val(data.RemainCredit);
-                        var creditminus = $("#CourseCredit").val(data.Credit);
-                            
+                      
+                        $("#CourseCredit").val(data.Credit);
+                        //hisab 
+                        debugger;
 
+                        var remainCredit = $("#RemainCredit").val();
+                        var creditminus = $("#CourseCredit").val();
                             var finalcredit = remainCredit - creditminus;
 
                            
