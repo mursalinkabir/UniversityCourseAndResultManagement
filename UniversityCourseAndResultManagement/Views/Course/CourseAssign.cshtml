@@ -83,17 +83,15 @@
                     </td>
 
                 </tr>
-                <tr>
-                    <td>
-                        <label for="datepicker">Date </label>
-                    </td>
-                    <td>
-                        <input type="text" name="datepicker" id="datepicker" value="">
-                    </td>
-                </tr>
+
                 <tr>
                     <td>@ViewBag.Message1</td>
                     @*testing*@
+
+
+                </tr>
+                <tr>
+                    <td>@ViewBag.Message2</td>
                 </tr>
 
             </table>
@@ -187,16 +185,14 @@
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(jsondata),
                     success: function (data) {
-                        //debugger;
-                        
-                        //alert(data);
+                      
 
                         //alert(key);
                         $("#Name").val(data.Name);
                       
                         $("#CourseCredit").val(data.Credit);
                         //hisab 
-                        debugger;
+                        //debugger;
 
                         var remainCredit = $("#RemainCredit").val();
                         var creditminus = $("#CourseCredit").val();
@@ -208,10 +204,10 @@
                 });
             });
         });
-        $(function () {
-            var $j = jQuery.noConflict();
-            $j("#datepicker").datepicker();
+        //$(function () {
+        //    var $j = jQuery.noConflict();
+        //    $j("#datepicker").datepicker();
             
-        });
+        //});
     </script>
 }

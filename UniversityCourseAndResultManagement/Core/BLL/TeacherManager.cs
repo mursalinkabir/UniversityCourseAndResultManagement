@@ -44,5 +44,19 @@ namespace UniversityCourseAndResultManagement.Core.BLL
         {
             return teacherGateway.GetTeacherInfoById(teacherId);
         }
+
+        public string UpdateRemainingCredit(int teacherId, int remainCredit)
+        {
+            if (teacherGateway.UpdateRemainingCredit(teacherId, remainCredit) > 0)
+            {
+                return "Assign Remaining  to Credit successfully !!!";
+            }
+            else
+            {
+                return "Assign Remaining  to Credit failure !!!";
+            }
+
+            
+        }
     }
 }

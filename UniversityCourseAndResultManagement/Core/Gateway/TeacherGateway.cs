@@ -135,5 +135,22 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
             connection.Close();
             return teacher;
         }
+
+        public int UpdateRemainingCredit(int teacherId, int remainCredit)
+        {
+            connection.ConnectionString = connectionString;
+            
+            string query = "UPDATE Teacher SET RemainCredit=@remainCredit WHERE Id=@Id;";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.Clear();
+            command.Parameters.Add("remainCredit", SqlDbType.Int);
+            command.Parameters["remainCredit"].Value = remainCredit;
+            command.Parameters.Add("Id", SqlDbType.Int);
+            command.Parameters["Id"].Value = teacherId;
+            connection.Open();
+            int rowAffected = command.ExecuteNonQuery();
+            connection.Close();
+            return rowAffected;
+        }
     }
 }

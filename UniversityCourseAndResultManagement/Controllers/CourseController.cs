@@ -114,6 +114,7 @@ namespace UniversityCourseAndResultManagement.Controllers
 
             ViewBag.Departments = GetDepartmentForSelectList();
             ViewBag.Message1 = courseManager.AssignTeachertoCourse(TeacherId, Name);
+            ViewBag.Message2 = teacherManager.UpdateRemainingCredit(TeacherId, RemainCredit);
 
             return View();
         }
