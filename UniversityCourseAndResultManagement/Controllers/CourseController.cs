@@ -108,6 +108,16 @@ namespace UniversityCourseAndResultManagement.Controllers
 
             return View();
         }
+        [HttpPost]
+        public ActionResult CourseAssign(int TeacherId, int RemainCredit, string Name)
+        {
+
+            ViewBag.Departments = GetDepartmentForSelectList();
+            ViewBag.Message1 = courseManager.AssignTeachertoCourse(TeacherId, Name);
+
+            return View();
+        }
+
         public JsonResult GetAllTeacherbyDeptId(int departmentId)
         {
             var teacherList = teacherManager.GetAllTeacherbyDeptID(departmentId);

@@ -168,5 +168,24 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
             connection.Close();
             return course;
         }
+
+        public int AssignTeachertoCourse(int teacherId, string Name)
+        {
+            connection.ConnectionString = connectionString;
+            //string query = "INSERT INTO Course (TeacherId) VALUES(@TeacherId) WHERE Code=@Code";
+            string query = "UPDATE Course SET TeacherId=@TeacherId WHERE Name=@Name;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.Clear();
+            command.Parameters.Add("TeacherId", SqlDbType.Int);
+            command.Parameters["TeacherId"].Value = teacherId;
+            command.Parameters.Add("Name", SqlDbType.VarChar);
+            command.Parameters["Name"].Value = Name;
+
+            connection.Open();
+            int rowAffected = command.ExecuteNonQuery();
+            connection.Close();
+            return rowAffected;
+        }
     }
 }

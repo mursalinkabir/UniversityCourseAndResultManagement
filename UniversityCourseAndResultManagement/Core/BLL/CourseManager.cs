@@ -47,5 +47,17 @@ namespace UniversityCourseAndResultManagement.Core.BLL
         {
             return courseGateway.GetCourseInfoById(courseId);
         }
+
+        public string AssignTeachertoCourse(int teacherId, string Name)
+        {
+            if (courseGateway.AssignTeachertoCourse(teacherId, Name) > 0)
+            {
+                return "Assign Teacher to Course successfully !!!";
+            }
+            else
+            {
+                return "Assign Teacher to Course failure !!!";
+            }
+        }
     }
 }
