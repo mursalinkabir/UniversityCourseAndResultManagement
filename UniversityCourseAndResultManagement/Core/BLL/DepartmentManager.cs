@@ -39,5 +39,10 @@ namespace UniversityCourseAndResultManagement.Core.BLL
         {
             return departmentGateway.GetAllDepartments();
         }
+
+        public Department GetAllCodebyDeptID(int departmentId)
+        {
+            return departmentGateway.GetAllCodebyDeptID(departmentId);
+        }
     }
 }

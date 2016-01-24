@@ -83,5 +83,34 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
 
         /// Get alldepartmentssssss
 
+        public Department GetAllCodebyDeptID(int departmentId)
+        {
+            connection.ConnectionString = connectionString;
+            string query = "SELECT * FROM Department WHERE Id=@departmentId";
+
+
+
+            SqlCommand command = new SqlCommand();
+            command.CommandText = query;
+            command.Connection = connection;
+            command.Parameters.Add("departmentId", SqlDbType.Int);
+            command.Parameters["departmentId"].Value = departmentId;
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            //List<Teacher> teacherList = new List<Teacher>();
+
+            Department department = new Department();
+            while (reader.Read())
+            {
+
+                department.Id = (int)reader["Id"];
+                department.Name = reader["Name"].ToString();
+                department.Code = reader["Code"].ToString();
+
+            }
+            reader.Close();
+            connection.Close();
+            return department;
+        }
     }
 }

@@ -1,0 +1,261 @@
+﻿@using UniversityCourseAndResultManagement.Models
+@model UniversityCourseAndResultManagement.Models.Student
+
+
+@{
+    ViewBag.Title = "Save student";
+    List<Department> Departments = ViewBag.Departments;
+    StudentView studentView = ViewBag.Students;
+
+}
+
+
+
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
+
+<div>
+    <form method="POST">
+
+        <fieldset>
+            <legend>Register Student</legend>
+            <table>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.Name)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.Name)
+                        @Html.ValidationMessageFor(m => m.Name)
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.Email)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.Email)
+                    @Html.ValidationMessageFor(m => m.Email)
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.ContactNo)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.ContactNo)
+                        @Html.ValidationMessageFor(m => m.ContactNo)
+                    </td>
+                   
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(m => m.Date)</td>
+                    <td>
+                        <span>
+                            <input id="Date" name="Date" type="text" value=""  />
+                        </span>
+
+                    </td>
+                   
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.Address)
+                    </td>
+                    <td>
+                        @Html.TextAreaFor(m => m.Address)
+                        @Html.ValidationMessageFor(m => m.Address)
+                    </td>
+                   
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.DepartmentId)
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(model => model.DepartmentId, new SelectList(Departments, "Id", "Name"), "-- Select Department--")
+                        @Html.ValidationMessageFor(m => m.DepartmentId)
+                    </td>
+                    
+                </tr>
+                <tr>
+
+                    <td>
+                        <input type="hidden" name="DepartmentCode" id="DepartmentCode" value="">
+
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>
+                        <input type="submit" value="Register" />
+
+                    </td>
+
+                </tr>
+                <tr><td>@ViewBag.Message</td></tr>
+
+
+
+
+            </table>
+            
+            
+            
+           
+        </fieldset>
+    </form>
+    @{
+        if (ViewBag.PostBack)
+        {
+            <fieldset>
+                <legend>Student Information</legend>
+           
+                <table border="1">
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.Name)
+
+                        </td>
+                        <td>
+                            <p>@studentView.Name</p>
+
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.Email)
+                        </td>
+                        <td>
+
+                            <p>@studentView.Email</p>
+
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.ContactNo)
+                        </td>
+                        <td>
+
+                            <p>@studentView.ContactNo</p>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.Date)
+
+                        </td>
+                        <td>
+                            <input id="SavedDate" name="SavedDate" type="text" value="" style="border: none" readonly="readonly" />
+
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.Address)
+                        </td>
+                        <td>
+
+                            <p>@studentView.Address</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <p>DepartName</p>
+                        </td>
+                        <td>
+
+                            <p>@studentView.DepartmentName</p>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <p>RegNo</p>
+                        </td>
+                        <td>
+
+                            <p>@studentView.RegNo</p>
+
+                        </td>
+
+                    </tr>
+
+                </table>
+        </fieldset>
+
+        }
+    }
+
+    </
+    div>
+
+
+    @*<script src="~/Scripts/jquery-2.2.0.js"></script>
+        <script src="~/Scripts/jquery.validate.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+        <script src="~/Scripts/jquery-ui.js"></script>*@
+
+
+
+    @section Scripts{
+
+        <script>
+            $(document).ready(function () {
+
+                $("#DepartmentId").change(function () {
+                    //alert("Hello");
+                    var deptId = $("#DepartmentId").val();
+                    //$("#studentId").empty();
+                    var json = { departmentId: deptId };
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("GetCodeByDepartmentId", "Student")',
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify(json),
+                        success: function (data) {
+                            //debugger;
+                            var testdata = data;
+                            //alert(data);
+
+                            //alert(key);
+
+                            $("#DepartmentCode").val(data.Code);
+
+
+                        }
+                    });
+                });
+            });
+            $(function () {
+                $("#Date").datepicker().datepicker("setDate", new Date());
+                //alert("Test from date");
+            });
+
+            $(function () {
+                $("#SavedDate").datepicker().datepicker("setDate", new Date());
+                //alert("Test from date");
+            });
+
+
+
+
+        </script>
+
+    }
