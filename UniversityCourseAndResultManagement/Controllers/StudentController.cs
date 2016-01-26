@@ -27,14 +27,14 @@ namespace UniversityCourseAndResultManagement.Controllers
             ViewBag.PostBack = false;
             List<Department> departments = departmentManager.GetAllDepartments();
             ViewBag.Departments = departments;
-            ViewBag.Message = studentManager.Save(student); 
+            ViewBag.Message = studentManager.Save(student);
             if (Email != String.Empty)
             {
                 ViewBag.PostBack = true;
             }
-            StudentView students = studentManager.GetAllStudent(Email);
+            StudentView students = studentManager.GetAllStudentByEmail(Email);
             ViewBag.Students = students;
-            
+
             ModelState.Clear();
             return View();
         }

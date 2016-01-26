@@ -17,7 +17,7 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
         public int Save(Student student)
         {
 
-            Department department = new Department();
+            //Department department = new Department();
             connection.ConnectionString = connectionString;
 
             string query = "INSERT INTO Student(Name,Email,ContactNo,Date,Address,DepartmentId,DepartmentCode) VALUES(@Name,@Email,@ContactNo,@Date,@Address,@DepartmentId,@DepartmentCode)";
@@ -75,7 +75,7 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
             return isEmailExist;
         }
 
-        public StudentView GetAllStudent(string Email)
+        public StudentView GetAllStudentByEmail(string Email)
         {
             connection.ConnectionString = connectionString;
 
@@ -98,6 +98,93 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
                 student.Date = Convert.ToDateTime(reader["Date"].ToString());
                 student.Address = reader["Address"].ToString();
                 student.RegNo = reader["RegNo"].ToString();
+                student.DepartmentName = reader["DepartmentName"].ToString();
+
+
+
+
+            }
+
+            reader.Close();
+            connection.Close();
+            return student;
+        }
+
+        public List<Student> GetAllStudent()
+        {
+            connection.ConnectionString = connectionString;
+
+            string query = "SELECT * FROM Student ";
+            SqlCommand command = new SqlCommand(query, connection);
+
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            List<Student> studentslist = new List<Student>();
+            while (reader.Read())
+            {
+
+                Student student = new Student();
+                student.Id = Convert.ToInt32(reader["Id"].ToString());
+                student.RegNo = reader["RegNo"].ToString();
+                student.DepartmentId = Convert.ToInt32(reader["DepartmentId"].ToString());
+                studentslist.Add(student);
+            }
+
+            reader.Close();
+            connection.Close();
+            return studentslist;
+        }
+
+
+        public Student GetAllStudentbyId(int id)
+        {
+            connection.ConnectionString = connectionString;
+
+            string query = "SELECT * FROM Student WHERE Student.DepartmentId= '" + id + "'";
+            SqlCommand command = new SqlCommand(query, connection);
+
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            Student student = new Student();
+            while (reader.Read())
+            {
+
+
+                student.Id = Convert.ToInt32(reader["Id"].ToString());
+                student.Name = reader["Name"].ToString();
+                student.Email = reader["Email"].ToString();
+                student.DepartmentId = Convert.ToInt32(reader["DepartmentId"].ToString());
+
+            }
+
+            reader.Close();
+            connection.Close();
+            return student;
+        }
+
+        public StudentView GetAllDepartmentNameById(int id)
+        {
+            connection.ConnectionString = connectionString;
+
+            string query = "SELECT Department.Name AS DepartmentName FROM Student INNER JOIN Department ON Student.DepartmentId= Department.Id WHERE Student.DepartmentId= '" + id + "'";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            StudentView student = new StudentView();
+            while (reader.Read())
+            {
+
+                //student.Id = (int)reader["Id"];
+                //student.Name = reader["Name"].ToString();
+                //student.Email = reader["Email"].ToString();
+                //student.ContactNo = reader["ContactNo"].ToString();
+                //student.Date = Convert.ToDateTime(reader["Date"].ToString());
+                //student.Address = reader["Address"].ToString();
+                //student.RegNo = reader["RegNo"].ToString();
                 student.DepartmentName = reader["DepartmentName"].ToString();
 
 

@@ -13,17 +13,17 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
     {
         private string connectionString =
             WebConfigurationManager.ConnectionStrings["UniversityCRManagementConnectionDB"].ConnectionString;
-            SqlConnection connection=new SqlConnection();
+        SqlConnection connection = new SqlConnection();
 
         public int SaveDepartment(Department department)
         {
             connection.ConnectionString = connectionString;
             string query = "INSERT INTO Department VALUES(@Code,@Name)";
-            SqlCommand command=new SqlCommand(query,connection);
+            SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.Clear();
             command.Parameters.Add("Code", SqlDbType.VarChar);
             command.Parameters["Code"].Value = department.Code;
-             command.Parameters.Add("Name", SqlDbType.VarChar);
+            command.Parameters.Add("Name", SqlDbType.VarChar);
             command.Parameters["Name"].Value = department.Name;
             connection.Open();
             int rowAffected = command.ExecuteNonQuery();
@@ -69,7 +69,7 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
             List<Department> departmentlist = new List<Department>();
             while (reader.Read())
             {
-                Department department=new Department();
+                Department department = new Department();
                 department.Id = Convert.ToInt32(reader["Id"].ToString());
                 department.Code = reader["Code"].ToString();
                 department.Name = reader["Name"].ToString();
@@ -111,6 +111,31 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
             reader.Close();
             connection.Close();
             return department;
+        }
+
+        public List<Course> GetAllCourseNameById(int id)
+        {
+            connection.ConnectionString = connectionString;
+
+            string query = "SELECT Course.Id, Course.Name AS CourseName FROM Course INNER JOIN Department ON Course.DepartmentId= Department.Id WHERE Department.Id= '" + id + "'";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            List<Course> courselist = new List<Course>();
+            while (reader.Read())
+            {
+
+                Course course = new Course();
+                course.Id = Convert.ToInt32(reader["Id"].ToString());
+                course.Name = reader["CourseName"].ToString();
+                courselist.Add(course);
+            }
+
+            reader.Close();
+            connection.Close();
+            return courselist;
         }
     }
 }

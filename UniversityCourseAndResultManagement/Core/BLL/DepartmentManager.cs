@@ -13,27 +13,27 @@ namespace UniversityCourseAndResultManagement.Core.BLL
 
         public string SaveDepartment(Department department)
         {
-           if (departmentGateway.IsDepartmentExists(department))
+            if (departmentGateway.IsDepartmentExists(department))
+            {
+                return "Department Name And Code must be unique !!!";
+            }
+            else
+            {
+                if (departmentGateway.SaveDepartment(department) > 0)
                 {
-                    return "Department Name And Code must be unique !!!";
+                    return "Save successfully";
                 }
                 else
                 {
-                    if (departmentGateway.SaveDepartment(department) > 0)
-                    {
-                        return "Save successfully";
-                    }
-                    else
-                    {
-                        return "Insertion failure !!!";
-                    }
+                    return "Insertion failure !!!";
                 }
-                
             }
-        
-           
 
-       
+        }
+
+
+
+
 
         public List<Department> GetAllDepartments()
         {
@@ -43,6 +43,12 @@ namespace UniversityCourseAndResultManagement.Core.BLL
         public Department GetAllCodebyDeptID(int departmentId)
         {
             return departmentGateway.GetAllCodebyDeptID(departmentId);
+        }
+
+
+        public List<Course> GetAllCourseNameById(int id)
+        {
+            return departmentGateway.GetAllCourseNameById(id);
         }
     }
 }

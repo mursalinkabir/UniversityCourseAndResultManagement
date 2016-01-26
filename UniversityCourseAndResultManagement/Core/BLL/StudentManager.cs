@@ -29,9 +29,24 @@ namespace UniversityCourseAndResultManagement.Core.BLL
             }
         }
 
-        public StudentView GetAllStudent(string Email)
+        public StudentView GetAllStudentByEmail(string Email)
         {
-            return studentGateway.GetAllStudent(Email);
+            return studentGateway.GetAllStudentByEmail(Email);
+        }
+
+        public List<Student> GetAllStudent()
+        {
+            return studentGateway.GetAllStudent();
+        }
+
+        public Student GetAllStudentbyId(int id)
+        {
+            return studentGateway.GetAllStudentbyId(id);
+        }
+
+        public StudentView GetAllDepartmentNameById(int id)
+        {
+            return studentGateway.GetAllDepartmentNameById(id);
         }
     }
 }
