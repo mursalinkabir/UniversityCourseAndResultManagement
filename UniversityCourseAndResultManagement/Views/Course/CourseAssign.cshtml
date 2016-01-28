@@ -8,7 +8,7 @@
 <h2>title</h2>
 <div class="container">
     <form method="POST">
-      
+
         <fieldset>
             <legend>Course Assign</legend>
             <table>
@@ -23,7 +23,7 @@
                     </td>
                     <td>
                         <select name="TeacherId" id="TeacherId">
-                            
+
 
                         </select>
                     </td>
@@ -36,7 +36,7 @@
                     <td>
                         <input type="text" name="Credit" id="Credit" value="">
                     </td>
-                    
+
                 </tr>
                 <tr>
                     <td>
@@ -97,6 +97,9 @@
             </table>
         </fieldset>
     </form>
+    <div id="dialog-confirm" title="Empty the recycle bin?">
+        <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>These items will be permanently deleted and cannot be recovered. Are you sure?</p>
+    </div>
 
 </div>
 
@@ -197,7 +200,23 @@
                         var remainCredit = $("#RemainCredit").val();
                         var creditminus = $("#CourseCredit").val();
                             var finalcredit = remainCredit - creditminus;
-
+                            if (finalcredit<0) {
+                                $("#dialog-confirm").dialog({
+                                    resizable: false,
+                                    height: 140,
+                                    modal: true,
+                                    buttons: {
+                                        "Yes(Add Course)": function () {
+                                            $(this).dialog("close");
+                                        },
+                                        "NO(Dont Add Course)": function () {
+                                           
+                                            $(":submit").attr("disabled", true);
+                                            $(this).dialog("close");
+                                        }
+                                    }
+                                });
+                        }
                            
                             $("#RemainCredit").val(finalcredit);
                     }
