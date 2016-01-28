@@ -50,13 +50,20 @@ namespace UniversityCourseAndResultManagement.Core.BLL
 
         public string AssignTeachertoCourse(int teacherId, string Name)
         {
-            if (courseGateway.AssignTeachertoCourse(teacherId, Name) > 0)
+            if (!courseGateway.IsCourseAllocated(Name))
             {
-                return "Assign Teacher to Course successfully !!!";
+                if (courseGateway.AssignTeachertoCourse(teacherId, Name) > 0)
+                {
+                    return "Assign Teacher to Course successfully !!!";
+                }
+                else
+                {
+                    return "Assign Teacher to Course failure !!!";
+                }
             }
             else
             {
-                return "Assign Teacher to Course failure !!!";
+                return "Course is Allocated so cant be assigned";
             }
         }
     }

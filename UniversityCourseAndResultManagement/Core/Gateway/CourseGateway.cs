@@ -14,6 +14,40 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
         private string connectionString =
             WebConfigurationManager.ConnectionStrings["UniversityCRManagementConnectionDB"].ConnectionString;
         SqlConnection connection = new SqlConnection();
+
+        public bool IsCourseAllocated(string Name)
+        {
+            connection.ConnectionString = connectionString;
+            string query = "SELECT TeacherId FROM Course WHERE Name= @Name ";
+            SqlCommand command = new SqlCommand();
+            command.CommandText = query;
+            command.Connection = connection;
+            command.Parameters.Add("Name", SqlDbType.VarChar);
+            command.Parameters["Name"].Value = Name;
+
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            int teacheridval=-1;
+            while (reader.Read())
+            {
+
+                teacheridval = (int)reader["TeacherId"];
+                
+            }
+
+            reader.Close();
+            connection.Close();
+            if (teacheridval!=-1)
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public bool IsCourseExists(Course course)
         {
             connection.ConnectionString = connectionString;
@@ -49,7 +83,7 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
         {
             connection.ConnectionString = connectionString;
 
-            string query = "INSERT INTO Course (Code,Name,Credit,Description,DepartmentId,SemesterId) VALUES(@Code,@Name,@Credit,@Description,@DepartmentId,@SemesterId)";
+            string query = "INSERT INTO Course (Code,Name,Credit,Description,DepartmentId,SemesterId,TeacherId) VALUES(@Code,@Name,@Credit,@Description,@DepartmentId,@SemesterId,@TeacherId)";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.Clear();
@@ -65,6 +99,8 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
             command.Parameters["DepartmentId"].Value = course.DepartmentId;
             command.Parameters.Add("SemesterId", SqlDbType.Int);
             command.Parameters["SemesterId"].Value = course.SemesterId;
+            command.Parameters.Add("TeacherId", SqlDbType.Int);
+            command.Parameters["TeacherId"].Value = -1;
 
 
             connection.Open();
