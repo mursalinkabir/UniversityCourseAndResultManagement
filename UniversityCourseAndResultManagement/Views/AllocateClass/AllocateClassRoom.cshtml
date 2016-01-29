@@ -31,7 +31,7 @@
             <tr>
                 <td>@Html.LabelFor(x => x.Day)</td>
 
-                <td>@Html.DropDownListFor(x => x.Day, new SelectList(ViewBag.Days, "Value", "Text"))</td>
+                <td>@Html.DropDownListFor(x => x.Day, new SelectList(ViewBag.Days, "Text", "Text"))</td>
 
                 <td>@Html.ValidationMessageFor(x => x.Day)</td>
             </tr>
@@ -48,8 +48,14 @@
             </tr>
             <tr>
                 <td></td>
-                
+
                 <td><input type="submit" value="Allocate"/></td>
+            </tr>
+            <tr>
+                <td>@ViewBag.TimeClash</td>
+                @*testing*@
+
+
             </tr>
         </table>
     </form>

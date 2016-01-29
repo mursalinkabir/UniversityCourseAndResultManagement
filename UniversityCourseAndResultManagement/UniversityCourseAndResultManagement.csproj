@@ -167,6 +167,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
+    <Compile Include="Core\BLL\AllocateClassRoomManager.cs" />
     <Compile Include="Core\BLL\CourseManager.cs" />
     <Compile Include="Core\BLL\CourseViewManager.cs" />
     <Compile Include="Core\BLL\DepartmentManager.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="Core\BLL\SemestersManager.cs" />
     <Compile Include="Core\BLL\StudentManager.cs" />
     <Compile Include="Core\BLL\TeacherManager.cs" />
+    <Compile Include="Core\Gateway\AllocateClassRoomGateway.cs" />
     <Compile Include="Core\Gateway\CourseGateway.cs" />
     <Compile Include="Core\Gateway\CourseViewGateway.cs" />
     <Compile Include="Core\Gateway\DepartmentGateway.cs" />

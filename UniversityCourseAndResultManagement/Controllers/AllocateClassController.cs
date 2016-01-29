@@ -13,6 +13,7 @@ namespace UniversityCourseAndResultManagement.Controllers
         DepartmentManager departmentManager = new DepartmentManager();
         CourseManager courseManager = new CourseManager();
         RoomManager roomManager = new RoomManager();
+        AllocateClassRoomManager allocateClassRoomManager = new AllocateClassRoomManager();
         private List<SelectListItem> GetDepartmentForSelectList()
         {
 
@@ -107,6 +108,16 @@ namespace UniversityCourseAndResultManagement.Controllers
         [HttpPost]
         public ActionResult AllocateClassRoom(AllocateClassRoom allocateClassRoom)
         {
+            ViewBag.Departments = GetDepartmentForSelectList();
+            ViewBag.Rooms = GetRoomsForSelectList();
+            ViewBag.Days = GetDaysForSelectList();
+            //data manipulation
+            DateTime start = new DateTime(2016, 1, 1, allocateClassRoom.TimeStart.Hour, allocateClassRoom.TimeStart.Minute, allocateClassRoom.TimeStart.Second);
+            DateTime end = new DateTime(2016, 1, 1, allocateClassRoom.TimeEnd.Hour, allocateClassRoom.TimeEnd.Minute, allocateClassRoom.TimeEnd.Second);
+            allocateClassRoom.TimeStart = start;
+            allocateClassRoom.TimeEnd = end;
+            ViewBag.TimeClash=allocateClassRoomManager.SaveClassAllocation(allocateClassRoom);
+
             return View();
         }
 	}
