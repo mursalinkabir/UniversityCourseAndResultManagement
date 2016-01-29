@@ -103,5 +103,11 @@ namespace UniversityCourseAndResultManagement.Controllers
             ViewBag.Days = GetDaysForSelectList();
             return View();
         }
+
+        [HttpPost]
+        public ActionResult AllocateClassRoom(AllocateClassRoom allocateClassRoom)
+        {
+            return View();
+        }
 	}
 }

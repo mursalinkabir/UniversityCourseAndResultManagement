@@ -37,13 +37,13 @@
             </tr>
             <tr>
                 <td>@Html.LabelFor(x => x.TimeStart)</td>
-                <td><input type="text" class="time" name="StartTime"/></td>
+                <td><input type="text" name="TimeStart" /></td>
                 <td>@Html.ValidationMessageFor(x => x.TimeStart)</td>
             </tr>
 
             <tr>
                 <td>@Html.LabelFor(x => x.TimeEnd)</td>
-                <td><input type="text" class="time" name="EndTime"/></td>
+                <td><input type="text" class="time" name="TimeEnd" /></td>
                 <td>@Html.ValidationMessageFor(x => x.TimeEnd)</td>
             </tr>
             <tr>
@@ -59,12 +59,12 @@
     <script>
         $(document).ready(function () {
             //time select
-            $(".time").ptTimeSelect();
+            //$(".time").ptTimeSelect();
 
 
 
             $("#DepartmentId").change(function () {
-
+                //debugger;
                 var deptId = $("#DepartmentId").val();
                 var jsondata = { departmentId: deptId };
          
@@ -90,6 +90,8 @@
                 });
 
             });
+            $('input[name="TimeStart"]').ptTimeSelect();
+            $('input[name="TimeEnd"]').ptTimeSelect();
 
         });
     </script>
