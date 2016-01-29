@@ -23,10 +23,33 @@
             </tr>
             <tr>
                 <td>@Html.LabelFor(x => x.RoomId)</td>
-                
+
                 <td>@Html.DropDownListFor(x => x.RoomId, new SelectList(ViewBag.Rooms, "Value", "Text"))</td>
-                
+
                 <td>@Html.ValidationMessageFor(x => x.RoomId)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(x => x.Day)</td>
+
+                <td>@Html.DropDownListFor(x => x.Day, new SelectList(ViewBag.Days, "Value", "Text"))</td>
+
+                <td>@Html.ValidationMessageFor(x => x.Day)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(x => x.TimeStart)</td>
+                <td><input type="text" class="time" name="StartTime"/></td>
+                <td>@Html.ValidationMessageFor(x => x.TimeStart)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.LabelFor(x => x.TimeEnd)</td>
+                <td><input type="text" class="time" name="EndTime"/></td>
+                <td>@Html.ValidationMessageFor(x => x.TimeEnd)</td>
+            </tr>
+            <tr>
+                <td></td>
+                
+                <td><input type="submit" value="Allocate"/></td>
             </tr>
         </table>
     </form>
@@ -34,7 +57,12 @@
 @section scripts
 {
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
+            //time select
+            $(".time").ptTimeSelect();
+
+
+
             $("#DepartmentId").change(function () {
 
                 var deptId = $("#DepartmentId").val();

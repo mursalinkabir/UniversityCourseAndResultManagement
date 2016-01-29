@@ -7,7 +7,10 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="@Url.Content("~/Content/jquery-ui.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/jquery-ui.css")" rel="stylesheet"/>
+    <link href="@Url.Content("~/Content/jquery.ptTimeSelect.css")" rel="stylesheet"/>
+
+    
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -43,6 +46,8 @@
 
     <script src="@Url.Content("~/Scripts/jquery-ui.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
-    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.ptTimeSelect.js")"></script>
+    
 </body>
 </html>

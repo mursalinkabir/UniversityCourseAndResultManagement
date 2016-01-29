@@ -56,6 +56,38 @@ namespace UniversityCourseAndResultManagement.Controllers
             return roomSelectListItems;
 
         }
+        // days
+        private List<SelectListItem> GetDaysForSelectList()
+        {
+
+           
+            List<SelectListItem> daySelectListItems = new List<SelectListItem>();
+            SelectListItem itemempty = new SelectListItem();
+            itemempty.Text = "Select";
+            itemempty.Value = "";
+            daySelectListItems.Add(itemempty);
+            Dictionary<string, int> days = new Dictionary<string, int>()
+            {
+                {"SAT",1},
+                {"SUN",2},
+                {"MON",3},
+                {"TUE",4},
+                {"WED",5},
+                {"THU",6},
+                {"FRI",7}
+            };
+            foreach (var day in days)
+            {
+                SelectListItem item = new SelectListItem
+                {
+                    Text = day.Key,
+                    Value = day.Value.ToString()
+                };
+                daySelectListItems.Add(item);
+            }
+            return daySelectListItems;
+
+        }
 
         //
         // GET: /AllocateClass/
@@ -68,6 +100,7 @@ namespace UniversityCourseAndResultManagement.Controllers
         {
             ViewBag.Departments = GetDepartmentForSelectList();
             ViewBag.Rooms = GetRoomsForSelectList();
+            ViewBag.Days = GetDaysForSelectList();
             return View();
         }
 	}
