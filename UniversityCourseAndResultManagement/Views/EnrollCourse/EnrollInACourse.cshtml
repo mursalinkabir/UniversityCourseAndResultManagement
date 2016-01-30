@@ -8,7 +8,7 @@
 }
 
 <div>
-    <form method="POST">
+    <form id="form" method="POST">
 
         <fieldset>
             <legend>Enroll In a Course</legend>
@@ -18,7 +18,7 @@
                         @Html.LabelFor(m => m.RegNo)
                     </td>
                     <td>
-                        @Html.DropDownListFor(model => model.RegNo, new SelectList(Students, "DepartmentId", "RegNo"), "-- Select Registration Number--")
+                        @Html.DropDownListFor(model => model.RegNo, new SelectList(Students, "RegNo", "RegNo"), "-- Select Registration Number--")
                         @Html.ValidationMessageFor(m => m.RegNo)
                     </td>
 
@@ -29,6 +29,8 @@
                     </td>
                     <td>
                         <input type="text" name="Name" id="Name" value="" readonly="readonly">
+                       
+
                     </td>
 
                 </tr>
@@ -57,13 +59,14 @@
                         @Html.LabelFor(x => x.CourseId)
                     </td>
                     <td>
-                        <select name="CourseId" id="CourseId"></select>
+                        <select name="CourseId" id="CourseId" autofocus required title="*Please select a Course " ></select>
+                        @Html.ValidationMessageFor(m => m.CourseId)
                     </td>
                 <tr>
                     <td>@Html.LabelFor(m => m.Date)</td>
                     <td>
                         <span>
-                            <input id="Date" name="Date" type="text" value="" />
+                            <input id="Date" name="Date" type="text" value="">
                         </span>
 
                     </td>
@@ -101,16 +104,17 @@
 @section Scripts{
 
     <script>
-        $(document).ready(function () {
+         $(document).ready(function () {
 
             $("#RegNo").change(function () {
                 //alert("Hello");
                 var regNo = $("#RegNo").val();
+
                 //$("#studentId").empty();
-                var json = { id: regNo };
+                var json = { RegNo: regNo };
                 $.ajax({
                     type: "POST",
-                    url: '@Url.Action("GetStudentByRegNo", "EnrollCourse")',
+                    url: '@Url.Action("GetStudentsByRegNo", "EnrollCourse")',
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(json),
                     success: function (data) {
@@ -122,6 +126,7 @@
 
                         $("#Name").val(data.Name);
                         $("#Email").val(data.Email);
+                        //$("#RegNo").val(data.RegNo);
 
 
 
@@ -134,10 +139,10 @@
                 //alert("Hello");
                 var regNo = $("#RegNo").val();
                 //$("#studentId").empty();
-                var json = { id: regNo };
+                var json = { RegNo: regNo };
                 $.ajax({
                     type: "POST",
-                    url: '@Url.Action("GetDepartmentNameById", "EnrollCourse")',
+                    url: '@Url.Action("GetDepartmentNameByRegNo", "EnrollCourse")',
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(json),
                     success: function (data) {
@@ -145,7 +150,6 @@
                         var testdata = data;
                         //alert(data);
 
-                        //alert(key);
 
                         $("#DepartmentName").val(data.DepartmentName);
 
@@ -155,35 +159,42 @@
             });
 
 
-            $("#RegNo").change(function () {
-                //alert("Hello");
-                var regNo = $("#RegNo").val();
-                //$("#studentId").empty();
-                var json = { id: regNo };
-                $.ajax({
-                    type: "POST",
-                    url: '@Url.Action("GetCourseNameById", "EnrollCourse")',
-                    contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify(json),
-                    success: function (data) {
-                        //debugger;
+             $("#RegNo").change(function () {
+                 //alert("Hello");
+                 var regNo = $("#RegNo").val();
+                 $("#CourseId").empty();
+                 $("#CourseId").append('<option value="">' + 'Select...' + '</option>');
+                 //$("#studentId").empty();
+                 var json = { RegNo: regNo };
+                 $.ajax({
+                     type: "POST",
+                     url: '@Url.Action("GetCourseNameByStudentRegNo", "EnrollCourse")',
+                     contentType: "application/json; charset=utf-8",
+                     data: JSON.stringify(json),
+                     success: function (data) {
+                         //debugger;
 
-                        $.each(data, function (key, value) {
-                            //alert(key);
-                            $("#CourseId").append('<option value=' + value.Id + '>' + value.Name + '</option>');
-                        });
-                        //var testdata = data;
-                        ////alert(data);
-
-                        ////alert(key);
-
-                        //$("#DepartmentName").val(data.DepartmentName);
+                         $.each(data, function (key, value) {
+                             //alert(key);
+                             $("#CourseId").append('<option value=' + value.Id + '>' + value.Name + '</option>');
+                         });
+                         //var testdata = data;
+                         ////alert(data);
 
 
-                    }
-                });
-            });
-        });
+
+
+
+                     }
+                 });
+             });
+         });
+
+
+
+
+
+
         $(function () {
             $("#Date").datepicker().datepicker("setDate", new Date());
             //alert("Test from date");
@@ -194,6 +205,6 @@
 
 
 
-    </script>
+</script>
 
 }

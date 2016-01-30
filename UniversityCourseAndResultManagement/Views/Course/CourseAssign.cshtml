@@ -1,11 +1,11 @@
 ﻿@model  UniversityCourseAndResultManagement.Models.Course
 
 @{
-    ViewBag.Title = "Course Assign";
+    ViewBag.Title = "Course Assign to Teaccher";
 
 }
 
-<h2>title</h2>
+
 <div class="container">
     <form method="POST">
       
@@ -81,18 +81,12 @@
                     <td>
                         <input type="submit" value="Assign"/>
                     </td>
-
-                </tr>
-
-                <tr>
                     <td>@ViewBag.Message1</td>
-                    @*testing*@
 
-
-                </tr>
-                <tr>
                     <td>@ViewBag.Message2</td>
                 </tr>
+
+                
 
             </table>
         </fieldset>
@@ -113,7 +107,7 @@
                 var deptId = $("#DepartmentId").val();
                 //alert("Alert from JS");
                 $("#TeacherId").empty();
-                $("#TeacherId").append('<option value=>' + 'SELECT...' + '</option>');
+                $("#TeacherId").append('<option value=>' + 'Select...' + '</option>');
                 var jsondata = { departmentId: deptId };
                 $.ajax({
                     type: "POST",

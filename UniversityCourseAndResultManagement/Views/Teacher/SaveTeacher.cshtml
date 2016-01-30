@@ -1,16 +1,10 @@
 ﻿@model UniversityCourseAndResultManagement.Models.Teacher
 
 @{
-    Layout = null;
+    ViewBag.Title = "Save Teacher";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <title>Save Teacher</title>
-</head>
-<body>
 <div>
     @using (Html.BeginForm())
     {
@@ -93,17 +87,13 @@
                     <td>
                         <input type="submit" value="Save"/>
                     </td>
-
+                    <td>@ViewBag.Message</td>
                 </tr>
-                <tr><td>@ViewBag.Message</td></tr>
+                
             </table>
 
         </fieldset>
     }
 
 </div>
-    <script src="~/Scripts/jquery-2.2.0.js"></script>
-    <script src="~/Scripts/jquery.validate.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-</body>
-</html>
+  

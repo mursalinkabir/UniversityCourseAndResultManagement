@@ -114,7 +114,7 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
         {
             connection.ConnectionString = connectionString;
 
-            string query = "SELECT * FROM Student ";
+            string query = "SELECT * FROM Student ORDER BY RegNo ";
             SqlCommand command = new SqlCommand(query, connection);
 
             connection.Open();
@@ -153,6 +153,7 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
                 student.Id = Convert.ToInt32(reader["Id"].ToString());
                 student.Name = reader["Name"].ToString();
                 student.Email = reader["Email"].ToString();
+                student.RegNo = reader["RegNo"].ToString();
                 student.DepartmentId = Convert.ToInt32(reader["DepartmentId"].ToString());
 
             }
@@ -167,6 +168,71 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
             connection.ConnectionString = connectionString;
 
             string query = "SELECT Department.Name AS DepartmentName FROM Student INNER JOIN Department ON Student.DepartmentId= Department.Id WHERE Student.DepartmentId= '" + id + "'";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            StudentView student = new StudentView();
+            while (reader.Read())
+            {
+
+                //student.Id = (int)reader["Id"];
+                //student.Name = reader["Name"].ToString();
+                //student.Email = reader["Email"].ToString();
+                //student.ContactNo = reader["ContactNo"].ToString();
+                //student.Date = Convert.ToDateTime(reader["Date"].ToString());
+                //student.Address = reader["Address"].ToString();
+                //student.RegNo = reader["RegNo"].ToString();
+                student.DepartmentName = reader["DepartmentName"].ToString();
+
+
+
+
+            }
+
+            reader.Close();
+            connection.Close();
+            return student;
+        }
+
+        public Student GetAllStudentbyRegNo(string regNo)
+        {
+            connection.ConnectionString = connectionString;
+
+            string query = "SELECT * FROM Student WHERE Student.RegNo= '" + regNo + "'";
+            SqlCommand command = new SqlCommand(query, connection);
+
+
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            Student student = new Student();
+            while (reader.Read())
+            {
+
+                 student.Id = Convert.ToInt32(reader["Id"].ToString());
+                student.Name = reader["Name"].ToString();
+                student.Email = reader["Email"].ToString();
+                student.RegNo = reader["RegNo"].ToString();
+                student.DepartmentId = Convert.ToInt32(reader["DepartmentId"].ToString());
+
+
+
+            }
+
+            reader.Close();
+            connection.Close();
+            return student;
+        }
+
+        public StudentView GetAllDepartmentNameByRegNo(string regNo)
+        {
+            connection.ConnectionString = connectionString;
+
+            string query = "SELECT Department.Name AS DepartmentName FROM Student INNER JOIN Department ON Student.DepartmentId= Department.Id WHERE Student.RegNo= '" + regNo + "'";
 
             SqlCommand command = new SqlCommand(query, connection);
 

@@ -1,0 +1,96 @@
+﻿@using UniversityCourseAndResultManagement.Models
+@model UniversityCourseAndResultManagement.Models.ViewResults
+
+@{
+    //ViewBag.Title = "View Result";
+    Layout = null;
+
+    List<Student> Students = ViewBag.StudentList;
+    Student Resulsts = ViewBag.studentLists;
+    StudentView studentView = ViewBag.DepartmentName;
+    List<ViewResults> results = ViewBag.Results;
+
+}
+
+<html>
+    <body>
+        <head>
+            <style>
+                .middle {
+                    position: fixed;
+                    top: 18%;
+                    left: 25%;
+                   
+                }
+                table {
+                    font-size: 25px;
+                }
+            </style>
+        </head>
+        
+        
+        <div class="middle">
+            
+            <table>
+                <tr>
+                    <td>Date</td>
+                    <td>@ViewBag.Date</td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Name</p>
+                    </td>
+                    <td>
+                        @*<input type="text" name="Name" id="Name" value="@Resulsts.Name" readonly="readonly">*@
+                        @Resulsts.Name
+                    </td>
+                </tr>
+                <tr>
+                    <td>Emal</td>
+                    <td>
+                        @*<input type="text" name="Email" id="Email" value="@Resulsts.Email" readonly="readonly">*@
+                        @Resulsts.Email
+                    </td>
+                </tr>
+                <tr>
+                    <td>Department</td>
+                    <td>
+                        @*<input type="text" name="Department" id="Email" value="@studentView.DepartmentName" readonly="readonly">*@
+                        @studentView.DepartmentName
+                    </td>
+
+
+                </tr>
+                <tr>
+                    <br />
+                </tr>
+            </table>
+
+
+            <table border="1">
+                <tr>
+                    <th>Course Code</th>
+                    <th>Name</th>
+                    <th>Grade</th>
+                </tr>
+                @{
+                    foreach (var res in results)
+                    {
+
+                        <tr>
+                            <td>@res.CourseCode</td>
+                            <td>@res.CourseName</td>
+                            <td>@res.Grade</td>
+                        </tr>
+
+                    }
+                }
+
+
+
+            </table>
+        </div>
+
+    </body>
+</html>
+

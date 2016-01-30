@@ -20,6 +20,8 @@ namespace UniversityCourseAndResultManagement.Models
         
         public string Email { get; set; }
         [Required(ErrorMessage = "Provide Contact Number")]
+        [StringLength(11,MinimumLength =7,ErrorMessage = "Contact number ")]
+        
         public string ContactNo { get; set; }
         [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yy}", ApplyFormatInEditMode = true)]
 

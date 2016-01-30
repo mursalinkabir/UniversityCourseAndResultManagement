@@ -18,7 +18,7 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
         {
             connection.ConnectionString = connectionString;
 
-            string query = "SELECT * FROM CourseStatics WHERE (DepartmentId=@DepartmentId)";
+            string query = "Select Code,c.Name as CourseName,SemesterId,s.Name as SemesterName,t.Name as TeacherName,c.DepartmentId from Course as c Left join Semester as s on SemesterId=s.Id Left join Teacher as t on c.TeacherId=t.Id WHERE (c.DepartmentId=@DepartmentId)";
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.Add("DepartmentId", SqlDbType.Int);
@@ -38,7 +38,7 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
                 }
                 else
                 {
-                    courseView.TeacherName = "Yet not assigned";
+                    courseView.TeacherName = "Not assigned yet";
                 }
 
 

@@ -4,46 +4,37 @@
 
 
 @{
-    Layout = null;
+    ViewBag.Title = "View Course Statics";
     var courses = ViewBag.Courses;
     var depts = ViewBag.Departments;
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>ViewCourse</title>
-</head>
-<body>
-    <style>
-        table, th, td {
-            border: 2px solid black;
-        }
-    </style>
+
     <div>
         <fieldset>
             <legend> View Course Statics</legend>
 
-            <form method="Post">
+            <form method="Post" id="form">
 
-                <table>
+                <table >
                     <tr>
+
+                        <td>@Html.LabelFor(m => m.DepartmentId)</td>
+
                         <td>
-                            Deparment:
+                            @Html.DropDownListFor(model => model.DepartmentId, new SelectList(depts, "Id", "Name"), "-- Select Department--")
+                            @Html.ValidationMessageFor(m => m.DepartmentId)
                         </td>
-                        <td>
-                            <select id="DepartmentId" name="DepartmentId" required title="Please select department">
-                                <option value="">---Select Department---</option>
-                                @foreach (var sub in depts)
-                                {
-                                    <option value="@sub.Id">@sub.Name</option>
-                                }
-                            </select>
-                        </td>
-                        <td> <input type="submit" id="Search" value="Search" /></td>
+
+
+                        @*<td> <input type="submit" id="Search" value="Search" /></td>*@
+
+
+
                     </tr>
+
+
                 </table>
 
             </form>
@@ -52,7 +43,7 @@
             <br />
 
 
-            <table>
+            <table border="1">
 
 
 
@@ -70,6 +61,7 @@
                             <td>@items.TeacherName</td>
                         </tr>
                     }
+
                 }
 
 
@@ -82,8 +74,36 @@
         </fieldset>
 
     </div>
-    <script src="~/Scripts/jquery-2.2.0.js"></script>
+@*<script src="~/Scripts/jquery-2.2.0.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-</body>
-</html>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>*@
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#DepartmentId").change(function () {
+                //alert("Hello");
+                //var regNo = $("#DepartmentId").val();
+                //$("#studentId").empty();
+                @*var json = { RegNo: regNo };
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetDepartmentNameByRegNo", "ViewResult")',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        //debugger;
+                        var testdata = data;
+                        //alert(data);
+
+                        //alert(key);
+
+                        $("#DepartmentName").val(data.DepartmentName);
+
+
+                    }
+                });*@
+                $("#form").submit();
+            });
+        });
+    </script>
+}

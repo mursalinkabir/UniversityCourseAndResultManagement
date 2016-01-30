@@ -14,7 +14,7 @@ namespace UniversityCourseAndResultManagement.Core.BLL
         {
             if (studentGateway.IsEmailExists(student))
             {
-                return "Course Code or Name already exist";
+                return "Email already exist";
             }
             else
             {
@@ -47,6 +47,16 @@ namespace UniversityCourseAndResultManagement.Core.BLL
         public StudentView GetAllDepartmentNameById(int id)
         {
             return studentGateway.GetAllDepartmentNameById(id);
+        }
+
+        public Student GetAllStudentbyRegNo(string regNo)
+        {
+            return studentGateway.GetAllStudentbyRegNo(regNo);
+        }
+
+        public StudentView GetAllDepartmentNameByRegNo(string regNo)
+        {
+            return studentGateway.GetAllDepartmentNameByRegNo(regNo);
         }
     }
 }

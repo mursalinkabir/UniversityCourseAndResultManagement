@@ -1,25 +1,13 @@
 ﻿@model IEnumerable<UniversityCourseAndResultManagement.Models.Department>
 @{
-    Layout = null;
+    ViewBag.Title = "View All Department";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>ShowDepartment</title>
-</head>
-    <body>
-        <style>
-            table, th, td {
-                border: 1px solid black;
-            }
-        </style>
         <div>
             <fieldset>
                 <legend>View All Departments</legend>
-                <table>
+                <table border="1">
                     <tr><th bgcolor="#e0e0d1">Code</th><th bgcolor="#e0e0d1">Name</th></tr>
                     @foreach (var items in Model) 
                     {  <tr>
@@ -30,5 +18,4 @@
                 </table>
             </fieldset> 
         </div>
-    </body>
-</html>
+    

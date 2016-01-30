@@ -31,26 +31,34 @@ namespace UniversityCourseAndResultManagement.Controllers
             ModelState.Clear();
             return View();
         }
-        public JsonResult GetStudentByRegNo(int id)
+        //public JsonResult GetStudentByRegNo(int id)
+        //{
+
+        //    var studentList = studentManager.GetAllStudentbyId(id);
+        //    return Json(studentList, JsonRequestBehavior.AllowGet);
+
+
+        //}
+        public JsonResult GetStudentsByRegNo(string RegNo)
         {
 
-            var studentList = studentManager.GetAllStudentbyId(id);
+            var studentList = studentManager.GetAllStudentbyRegNo(RegNo);
             return Json(studentList, JsonRequestBehavior.AllowGet);
 
 
         }
-        public JsonResult GetDepartmentNameById(int id)
+        public JsonResult GetDepartmentNameByRegNo(string RegNo)
         {
 
-            var studentList = studentManager.GetAllDepartmentNameById(id);
+            var studentList = studentManager.GetAllDepartmentNameByRegNo(RegNo);
             return Json(studentList, JsonRequestBehavior.AllowGet);
 
 
         }
-        public JsonResult GetCourseNameById(int id)
+        public JsonResult GetCourseNameByStudentRegNo(string RegNo)
         {
 
-            var courseList = departmentManager.GetAllCourseNameById(id);
+            var courseList = departmentManager.GetAllCourseNameByStudentRegNo(RegNo);
             return Json(courseList, JsonRequestBehavior.AllowGet);
 
 

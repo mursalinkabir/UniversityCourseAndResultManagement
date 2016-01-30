@@ -113,11 +113,11 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
             return department;
         }
 
-        public List<Course> GetAllCourseNameById(int id)
+        public List<Course> GetAllCourseNameByStudentRegNo(string regNo)
         {
             connection.ConnectionString = connectionString;
 
-            string query = "SELECT Course.Id, Course.Name AS CourseName FROM Course INNER JOIN Department ON Course.DepartmentId= Department.Id WHERE Department.Id= '" + id + "'";
+            string query = "SELECT Course.Id, Course.Name AS CourseName FROM Course INNER JOIN Student ON Course.DepartmentId= Student.DepartmentId WHERE Student.RegNo= '" + regNo + "'";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -137,5 +137,30 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
             connection.Close();
             return courselist;
         }
+
+        public List<Course> GetAllCourseNameByRegNo(string regNo)
+        {
+            connection.ConnectionString = connectionString;
+
+            string query = "SELECT Course.Id, Course.Name AS CourseName FROM Course INNER JOIN EnrollCourse ON Course.Id=EnrollCourse.CourseId INNER JOIN  Student ON EnrollCourse.RegNo= Student.RegNo WHERE Student.RegNo= '" + regNo + "'";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            List<Course> courselist = new List<Course>();
+            while (reader.Read())
+            {
+
+                Course course = new Course();
+                course.Id = Convert.ToInt32(reader["Id"].ToString());
+                course.Name = reader["CourseName"].ToString();
+                courselist.Add(course);
+            }
+
+            reader.Close();
+            connection.Close();
+            return courselist;
+        }
+        }
     }
-}

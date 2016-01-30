@@ -1,0 +1,235 @@
+﻿@using System.Web.Mvc.Html
+@using UniversityCourseAndResultManagement.Models
+@model UniversityCourseAndResultManagement.Models.ViewResults
+
+@{
+    ViewBag.Title = "View Result";
+
+    List<Student> Students = ViewBag.StudentList;
+    Student Resulsts = ViewBag.studentLists;
+    StudentView studentView = ViewBag.DepartmentName;
+    List<ViewResults> results = ViewBag.Results;
+    
+}
+
+<div>
+    <form id="form" method="POST">
+
+        <fieldset>
+            <legend>View Result</legend>
+            <table>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.RegNo)
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(model => model.RegNo, new SelectList(Students, "RegNo", "RegNo"), "-- Select Registration Number--")
+                        @Html.ValidationMessageFor(m => m.RegNo)
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.Name)
+                    </td>
+                    <td>
+                        <input type="text" name="Name" id="Name" value="" readonly="readonly">
+                        
+                        <input type="hidden" name="RegNo" id="RegNo" value="" readonly="readonly">
+                        
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <p>Email</p>
+                    </td>
+                    <td>
+                        <input type="text" name="Email" id="Email" value="" readonly="readonly">
+
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <p>Department</p>
+                    </td>
+                    <td>
+                        <input type="text" name="DepartmentName" id="DepartmentName" value="" readonly="readonly">
+                    </td>
+
+                </tr>
+            </table>
+            
+            <table border="1" id="showresulttable">
+                <tr>
+                    <th>Course Code</th>
+                    <th>Name</th>
+                    <th>Grade</th>
+                </tr>
+               
+
+            </table>
+            @*<a href="@Url.Action("GeneratePDF","ViewResult")"> GeneratePDF</a>*@
+            <input type="submit" value="Generate PDF"/>
+        </fieldset>
+    </form>
+</div>
+
+@{
+    if (ViewBag.PostBack)
+    {
+        <table>
+            <tr>
+                <td>
+                    <p>Name</p>
+                </td>
+                <td>
+                    <input type="text" name="Name" id="Name" value="@Resulsts.Name" readonly="readonly">
+                </td>
+            </tr>
+            <tr>
+                <td>Emal</td>
+                <td>
+                    <input type="text" name="Email" id="Email" value="@Resulsts.Email" readonly="readonly">
+                </td>
+            </tr>
+            <tr>
+                <td>Department</td>
+                <td>
+                    <input type="text" name="Department" id="Email" value="@studentView.DepartmentName" readonly="readonly">
+                </td>
+            </tr>
+        </table>
+    
+    
+        <table border="1">
+            <tr>
+                <th>Course Code</th>
+                <th>Name</th>
+                <th>Grade</th>
+            </tr>
+            @{   
+                foreach (var res in results)
+                {
+                        
+                    <tr>
+                        <td>@res.CourseCode</td>
+                        <td>@res.CourseName</td>
+                        <td>@res.Grade</td>
+                    </tr>
+                           
+                }
+            }
+               
+        </table>
+       
+            
+
+     
+
+    }}
+
+
+
+
+    @section Scripts{
+
+       <script>
+        $(document).ready(function () {
+
+            $("#RegNo").change(function () {
+                //alert("Hello");
+                var regNo = $("#RegNo").val();
+                //$("#studentId").empty();
+                var json = { RegNo: regNo };
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetStudentByRegNo", "ViewResult")',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        //debugger;
+                        var testdata = data;
+                        //alert(data);
+
+                        //alert(key);
+
+                        $("#Name").val(data.Name);
+                        $("#Email").val(data.Email);
+                        //$("#RegNo").val(data.Email);
+
+
+
+
+                    }
+                });
+            });
+
+            $("#RegNo").change(function () {
+                //alert("Hello");
+                var regNo = $("#RegNo").val();
+                //$("#studentId").empty();
+                var json = { RegNo: regNo };
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetDepartmentNameByRegNo", "ViewResult")',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        //debugger;
+                        var testdata = data;
+                        //alert(data);
+
+                        
+                        $("#DepartmentName").val(data.DepartmentName);
+
+
+                    }
+                });
+            });
+            $("#RegNo").change(function () {
+                //alert("Hello");
+                var regNo = $("#RegNo").val();
+                //$("#studentId").empty();
+                var json = { RegNo: regNo };
+                $("#showresulttable").empty();
+                $("#showresulttable").append('<tr><th>Course Code</th><th>Name</th><th>Grade</th> </tr>');
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetAllResultByRegNo", "ViewResult")',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+                        //debugger;
+                        var testdata = data;
+                        //alert(data);
+           
+
+                        $.each(data, function (key, value) {
+                            //alert(key);
+                            $("#showresulttable").append('<tr><td>' + value.CourseCode+'</td><td>'+value.CourseName+'</td><td>'+value.Grade+'</td></tr>');
+
+                        });
+
+
+                    }
+                });
+            });
+
+                    //$("#form").submit();
+                });
+
+
+               
+          
+
+
+
+
+
+
+        </script>
+    }

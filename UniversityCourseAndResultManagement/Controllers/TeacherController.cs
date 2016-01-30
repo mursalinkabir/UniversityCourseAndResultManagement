@@ -94,6 +94,7 @@ namespace UniversityCourseAndResultManagement.Controllers
             }
             ViewBag.Departments = departmentSelectListItems;
             ViewBag.Message = teacherManager.SaveTeacher(teacher);
+            ModelState.Clear();
             return View();
         }
     }

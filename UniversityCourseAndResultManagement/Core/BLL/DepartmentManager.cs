@@ -46,9 +46,14 @@ namespace UniversityCourseAndResultManagement.Core.BLL
         }
 
 
-        public List<Course> GetAllCourseNameById(int id)
+        public List<Course> GetAllCourseNameByStudentRegNo(string regNo)
         {
-            return departmentGateway.GetAllCourseNameById(id);
+            return departmentGateway.GetAllCourseNameByStudentRegNo(regNo);
+        }
+
+        public List<Course> GetAllCourseNameByRegNo(string regNo)
+        {
+            return departmentGateway.GetAllCourseNameByRegNo(regNo);
         }
     }
 }

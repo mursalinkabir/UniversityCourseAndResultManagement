@@ -1,25 +1,11 @@
 ﻿@using UniversityCourseAndResultManagement.Models
 @model UniversityCourseAndResultManagement.Models.Department
 @{
-    Layout = null;
+    ViewBag.Title = "Save Department";
 }
 
-<!DOCTYPE html>
 
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <title>SaveDeparment</title>
-    </head>
-<style>
-    .field-validation-error {
-        color: red;
-        font: bold;
-       
-    }
-</style>
 
-<body>
     <div>
         @using (Html.BeginForm()){<fieldset>
                                       <legend>Save Department</legend>
@@ -53,8 +39,3 @@
                 
                                   </fieldset>} 
     </div>
-    <script src="~/Scripts/jquery-2.2.0.js"></script>
-    <script src="~/Scripts/jquery.validate.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-</body>
-</html>

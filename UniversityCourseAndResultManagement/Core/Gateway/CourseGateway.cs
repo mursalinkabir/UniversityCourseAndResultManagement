@@ -187,5 +187,42 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
             connection.Close();
             return rowAffected;
         }
+
+        public List<ViewResults> GetAllResult(string regNo)
+        {
+            connection.ConnectionString = connectionString;
+
+            string query = "SELECT Course.Code AS CourseCode,Course.Name AS CourseName, Grade FROM Course INNER JOIN EnrollCourse ON Course.Id= EnrollCourse.CourseId LEFT JOIN  StudentResult ON EnrollCourse.RegNo= StudentResult.RegNo  WHERE EnrollCourse.RegNo= '" + regNo + "'";
+
+            //string query = "SELECT Course.Code AS CourseCode,Course.Name AS CourseName FROM Course INNER JOIN EnrollCourse ON Course.Id= EnrollCourse.CourseId  WHERE EnrollCourse.RegNo= '" + regNo + "'";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            List<ViewResults> viewResults = new List<ViewResults>();
+            while (reader.Read())
+            {
+
+                ViewResults viewresults = new ViewResults();
+                //viewresults.Id = Convert.ToInt32(reader["Id"].ToString());
+                viewresults.CourseCode = reader["CourseCode"].ToString();
+                viewresults.CourseName = reader["CourseName"].ToString();
+                if (!reader["Grade"].Equals(System.DBNull.Value))
+                {
+                    viewresults.Grade = reader.GetString(reader.GetOrdinal("Grade"));
+                }
+                else
+                {
+                    viewresults.Grade = "Not Graded Yet ";
+                }
+                //viewresults.Grade = reader["Grade"].ToString();
+                viewResults.Add(viewresults);
+            }
+
+            reader.Close();
+            connection.Close();
+            return viewResults;
+        }
     }
 }

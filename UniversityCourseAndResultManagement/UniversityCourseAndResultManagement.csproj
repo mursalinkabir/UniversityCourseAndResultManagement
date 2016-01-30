@@ -40,6 +40,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Rotativa">
+      <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -165,7 +168,9 @@
     <Compile Include="Controllers\EnrollCourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\StudentResultController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
+    <Compile Include="Controllers\ViewResultController.cs" />
     <Compile Include="Core\BLL\CourseManager.cs" />
     <Compile Include="Core\BLL\CourseViewManager.cs" />
     <Compile Include="Core\BLL\DepartmentManager.cs" />
@@ -173,6 +178,7 @@
     <Compile Include="Core\BLL\EnrollCourseManager.cs" />
     <Compile Include="Core\BLL\SemestersManager.cs" />
     <Compile Include="Core\BLL\StudentManager.cs" />
+    <Compile Include="Core\BLL\StudentResultManager.cs" />
     <Compile Include="Core\BLL\TeacherManager.cs" />
     <Compile Include="Core\Gateway\CourseGateway.cs" />
     <Compile Include="Core\Gateway\CourseViewGateway.cs" />
@@ -181,6 +187,7 @@
     <Compile Include="Core\Gateway\EnrollCourseGateway.cs" />
     <Compile Include="Core\Gateway\SemestersGateway.cs" />
     <Compile Include="Core\Gateway\StudentGateway.cs" />
+    <Compile Include="Core\Gateway\StudentResultGateway.cs" />
     <Compile Include="Core\Gateway\TeacherGateway.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -194,8 +201,10 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Semester.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\StudentResult.cs" />
     <Compile Include="Models\StudentView.cs" />
     <Compile Include="Models\Teacher.cs" />
+    <Compile Include="Models\ViewResults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -206,8 +215,10 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -261,6 +272,10 @@
     <Content Include="Views\CourseView\ViewCourse.cshtml" />
     <Content Include="Views\Student\SaveStudent.cshtml" />
     <Content Include="Views\EnrollCourse\EnrollInACourse.cshtml" />
+    <Content Include="Views\StudentResult\Index.cshtml" />
+    <Content Include="Views\StudentResult\SaveStudentResult.cshtml" />
+    <Content Include="Views\ViewResult\ShowResult.cshtml" />
+    <Content Include="Views\ViewResult\ShowResult2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

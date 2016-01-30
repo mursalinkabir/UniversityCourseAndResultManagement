@@ -15,7 +15,7 @@
 
 
 <div>
-    <form method="POST">
+    <form id="form1" method="POST">
 
         <fieldset>
             <legend>Register Student</legend>
@@ -36,9 +36,9 @@
                     </td>
                     <td>
                         @Html.TextBoxFor(m => m.Email)
-                    @Html.ValidationMessageFor(m => m.Email)
+                        @Html.ValidationMessageFor(m => m.Email)
                     </td>
-                    
+
                 </tr>
                 <tr>
                     <td>
@@ -48,17 +48,17 @@
                         @Html.TextBoxFor(m => m.ContactNo)
                         @Html.ValidationMessageFor(m => m.ContactNo)
                     </td>
-                   
+
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(m => m.Date)</td>
                     <td>
                         <span>
-                            <input id="Date" name="Date" type="text" value=""  />
+                            <input id="Date" name="Date" type="text" value="" />
                         </span>
 
                     </td>
-                   
+
                 </tr>
                 <tr>
                     <td>
@@ -68,7 +68,7 @@
                         @Html.TextAreaFor(m => m.Address)
                         @Html.ValidationMessageFor(m => m.Address)
                     </td>
-                   
+
                 </tr>
 
                 <tr>
@@ -79,7 +79,7 @@
                         @Html.DropDownListFor(model => model.DepartmentId, new SelectList(Departments, "Id", "Name"), "-- Select Department--")
                         @Html.ValidationMessageFor(m => m.DepartmentId)
                     </td>
-                    
+
                 </tr>
                 <tr>
 
@@ -105,10 +105,10 @@
 
 
             </table>
-            
-            
-            
-           
+
+
+
+
         </fieldset>
     </form>
     @{
@@ -175,7 +175,7 @@
 
                     <tr>
                         <td>
-                            <p>DepartName</p>
+                            <p><b>DepartName</b> </p>
                         </td>
                         <td>
 
@@ -187,7 +187,7 @@
 
                     <tr>
                         <td>
-                            <p>RegNo</p>
+                            <p><b>RegNo</b> </p>
                         </td>
                         <td>
 
@@ -219,6 +219,8 @@
         <script>
             $(document).ready(function () {
 
+               
+
                 $("#DepartmentId").change(function () {
                     //alert("Hello");
                     var deptId = $("#DepartmentId").val();
@@ -241,6 +243,7 @@
 
                         }
                     });
+                   
                 });
             });
             $(function () {

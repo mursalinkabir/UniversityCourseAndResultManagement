@@ -59,5 +59,10 @@ namespace UniversityCourseAndResultManagement.Core.BLL
                 return "Assign Teacher to Course failure !!!";
             }
         }
+
+        public List<ViewResults> GetAllResult(string regNo)
+        {
+            return courseGateway.GetAllResult(regNo);
+        }
     }
 }

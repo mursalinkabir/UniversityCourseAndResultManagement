@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -10,6 +11,7 @@ namespace UniversityCourseAndResultManagement.Models
         public string Code { get; set; }
         
         public string Name { get; set; }
+        [Required(ErrorMessage = "Select Department")]
         
         public int DepartmentId { get; set; }
        
