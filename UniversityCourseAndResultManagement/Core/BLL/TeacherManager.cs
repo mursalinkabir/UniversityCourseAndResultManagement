@@ -48,8 +48,8 @@ namespace UniversityCourseAndResultManagement.Core.BLL
 
         public string UpdateRemainingCredit(int teacherId, int remainCredit,string CourseName)
         {
-            if (!courseGateway.IsCourseAllocated(CourseName))
-            {
+            
+            
                 if (teacherGateway.UpdateRemainingCredit(teacherId, remainCredit) > 0)
                 {
                     return "Assign Remaining  to Credit successfully !!!";
@@ -58,11 +58,8 @@ namespace UniversityCourseAndResultManagement.Core.BLL
                 {
                     return "Assign Remaining  to Credit failure !!!";
                 }
-            }
-            else
-            {
-                return "Course is Allocated so cant be assigned";
-            }
+            
+            
           
 
             
