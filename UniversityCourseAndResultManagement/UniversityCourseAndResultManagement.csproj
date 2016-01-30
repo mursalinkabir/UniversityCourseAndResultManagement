@@ -162,6 +162,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AllocateClassController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\CourseViewController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
@@ -170,21 +171,28 @@
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\StudentResultController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
+
     <Compile Include="Controllers\ViewResultController.cs" />
+
+    <Compile Include="Core\BLL\AllocateClassRoomManager.cs" />
+
     <Compile Include="Core\BLL\CourseManager.cs" />
     <Compile Include="Core\BLL\CourseViewManager.cs" />
     <Compile Include="Core\BLL\DepartmentManager.cs" />
     <Compile Include="Core\BLL\DesignationManager.cs" />
     <Compile Include="Core\BLL\EnrollCourseManager.cs" />
+    <Compile Include="Core\BLL\RoomManager.cs" />
     <Compile Include="Core\BLL\SemestersManager.cs" />
     <Compile Include="Core\BLL\StudentManager.cs" />
     <Compile Include="Core\BLL\StudentResultManager.cs" />
     <Compile Include="Core\BLL\TeacherManager.cs" />
+    <Compile Include="Core\Gateway\AllocateClassRoomGateway.cs" />
     <Compile Include="Core\Gateway\CourseGateway.cs" />
     <Compile Include="Core\Gateway\CourseViewGateway.cs" />
     <Compile Include="Core\Gateway\DepartmentGateway.cs" />
     <Compile Include="Core\Gateway\DesignationGateway.cs" />
     <Compile Include="Core\Gateway\EnrollCourseGateway.cs" />
+    <Compile Include="Core\Gateway\RoomGateway.cs" />
     <Compile Include="Core\Gateway\SemestersGateway.cs" />
     <Compile Include="Core\Gateway\StudentGateway.cs" />
     <Compile Include="Core\Gateway\StudentResultGateway.cs" />
@@ -193,12 +201,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AllocateClassRoom.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseView.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Designation.cs" />
     <Compile Include="Models\EnrollCourse.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Room.cs" />
     <Compile Include="Models\Semester.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\StudentResult.cs" />
@@ -212,6 +222,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery.ptTimeSelect.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -228,6 +239,7 @@
     <Content Include="Scripts\jquery-2.2.0.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.ptTimeSelect.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -272,10 +284,14 @@
     <Content Include="Views\CourseView\ViewCourse.cshtml" />
     <Content Include="Views\Student\SaveStudent.cshtml" />
     <Content Include="Views\EnrollCourse\EnrollInACourse.cshtml" />
+
     <Content Include="Views\StudentResult\Index.cshtml" />
     <Content Include="Views\StudentResult\SaveStudentResult.cshtml" />
     <Content Include="Views\ViewResult\ShowResult.cshtml" />
     <Content Include="Views\ViewResult\ShowResult2.cshtml" />
+
+    <None Include="Views\AllocateClass\AllocateClassRoom.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

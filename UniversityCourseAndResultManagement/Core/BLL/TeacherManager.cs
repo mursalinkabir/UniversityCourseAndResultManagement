@@ -10,6 +10,7 @@ namespace UniversityCourseAndResultManagement.Core.BLL
     public class TeacherManager
     {
         private TeacherGateway teacherGateway = new TeacherGateway();
+        private CourseGateway courseGateway = new CourseGateway();
 
         public string SaveTeacher(Teacher teacher)
         {
@@ -45,16 +46,24 @@ namespace UniversityCourseAndResultManagement.Core.BLL
             return teacherGateway.GetTeacherInfoById(teacherId);
         }
 
-        public string UpdateRemainingCredit(int teacherId, int remainCredit)
+        public string UpdateRemainingCredit(int teacherId, int remainCredit,string CourseName)
         {
-            if (teacherGateway.UpdateRemainingCredit(teacherId, remainCredit) > 0)
+            if (!courseGateway.IsCourseAllocated(CourseName))
             {
-                return "Assign Remaining  to Credit successfully !!!";
+                if (teacherGateway.UpdateRemainingCredit(teacherId, remainCredit) > 0)
+                {
+                    return "Assign Remaining  to Credit successfully !!!";
+                }
+                else
+                {
+                    return "Assign Remaining  to Credit failure !!!";
+                }
             }
             else
             {
-                return "Assign Remaining  to Credit failure !!!";
+                return "Course is Allocated so cant be assigned";
             }
+          
 
             
         }

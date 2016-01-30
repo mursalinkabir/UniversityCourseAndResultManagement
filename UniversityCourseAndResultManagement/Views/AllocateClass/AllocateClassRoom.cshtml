@@ -1,0 +1,104 @@
+﻿@model  UniversityCourseAndResultManagement.Models.AllocateClassRoom
+
+@{
+    ViewBag.Title = "Allocate Class Room";
+    
+}
+
+<h2>Allocate Room</h2>
+<div class="container">
+    <form method="post">
+        <table>
+            <tr>
+                <td>@Html.LabelFor(x => x.DepartmentId)</td>
+                <td>@Html.DropDownListFor(x => x.DepartmentId, new SelectList(ViewBag.Departments, "Value", "Text"))</td>
+                <td>@Html.ValidationMessageFor(m => m.DepartmentId)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(x => x.CourseId)</td>
+                <td>
+                    <select name="CourseId" id="CourseId"></select>
+                </td>
+                <td>@Html.ValidationMessageFor(m => m.CourseId)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(x => x.RoomId)</td>
+
+                <td>@Html.DropDownListFor(x => x.RoomId, new SelectList(ViewBag.Rooms, "Value", "Text"))</td>
+
+                <td>@Html.ValidationMessageFor(x => x.RoomId)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(x => x.Day)</td>
+
+                <td>@Html.DropDownListFor(x => x.Day, new SelectList(ViewBag.Days, "Text", "Text"))</td>
+
+                <td>@Html.ValidationMessageFor(x => x.Day)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(x => x.TimeStart)</td>
+                <td><input type="text" name="TimeStart" /></td>
+                <td>@Html.ValidationMessageFor(x => x.TimeStart)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.LabelFor(x => x.TimeEnd)</td>
+                <td><input type="text" class="time" name="TimeEnd" /></td>
+                <td>@Html.ValidationMessageFor(x => x.TimeEnd)</td>
+            </tr>
+            <tr>
+                <td></td>
+
+                <td><input type="submit" value="Allocate"/></td>
+            </tr>
+            <tr>
+                <td>@ViewBag.TimeClash</td>
+                @*testing*@
+
+
+            </tr>
+        </table>
+    </form>
+</div>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            //time select
+            //$(".time").ptTimeSelect();
+
+
+
+            $("#DepartmentId").change(function () {
+                //debugger;
+                var deptId = $("#DepartmentId").val();
+                var jsondata = { departmentId: deptId };
+         
+             
+                //course code loading part
+
+
+                $("#CourseId").empty();
+                $("#CourseId").append('<option value=>' + 'SELECT...' + '</option>');
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetAllCoursebyDeptId", "Course")',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(jsondata),
+                    success: function (data) {
+                        //alert(data);
+                        $.each(data, function (key, value) {
+                            //alert(key);
+                            $("#CourseId").append('<option value=' + value.Id + '>' + value.Code + '</option>');
+
+                        });
+                    }
+                });
+
+            });
+            $('input[name="TimeStart"]').ptTimeSelect();
+            $('input[name="TimeEnd"]').ptTimeSelect();
+
+        });
+    </script>
+}
