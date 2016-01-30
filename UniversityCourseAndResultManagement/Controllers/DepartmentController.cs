@@ -22,6 +22,7 @@ namespace UniversityCourseAndResultManagement.Controllers
         public ActionResult SaveDeparment(Department department)
         {
             ViewBag.Message = departmentManager.SaveDepartment(department);
+                ModelState.Clear();
             return View();
         }
 

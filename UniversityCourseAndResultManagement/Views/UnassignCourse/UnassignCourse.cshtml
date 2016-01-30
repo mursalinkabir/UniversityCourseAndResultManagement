@@ -1,0 +1,39 @@
+﻿@model UniversityCourseAndResultManagement.Models.Course
+@{
+    Layout = null;
+    var message = ViewBag.Courses;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UnassignCourse</title>
+</head>
+<body>
+    <div>
+        <fieldset>
+            <legend>Unassign All Courses</legend>
+
+            <form id="UnassignCourse" method="Post">
+
+                <table>
+                    <tr>
+
+
+                        <center><td> <input type="submit" id="UnassignCourse" value="UnassignCourse" /></td></center>
+                    </tr>
+
+                </table>
+
+            </form>
+            <h3>@message</h3>
+
+        </fieldset>
+
+    </div>
+
+
+</body>
+</html>

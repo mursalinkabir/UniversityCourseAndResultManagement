@@ -1,0 +1,30 @@
+﻿@model UniversityCourseAndResultManagement.Models.AllocateClassRoom
+@{
+    ViewBag.Title = "Unallocate All ClassRooms";
+    var message = ViewBag.Message;
+}
+
+
+    <div>
+        <fieldset>
+            <legend>Unallocate All ClassRooms</legend>
+
+            <form id="UnallocateClassRoom" method="Post">
+                
+                
+                <table>
+                    <tr>
+
+
+                        <center><td> <input type="submit" name="UnallocateClassRoom" id="UnallocateClassRoom" value="UnallocateClassRoom" /></td></center>
+                    </tr>
+
+                </table>
+
+            </form>
+            <h3>@message</h3>
+
+        </fieldset>
+
+    </div>
+   

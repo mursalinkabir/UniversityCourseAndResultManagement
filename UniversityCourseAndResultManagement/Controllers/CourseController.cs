@@ -58,6 +58,7 @@ namespace UniversityCourseAndResultManagement.Controllers
             List<Semester> semesters = semesterManager.GetAllSemester();
             ViewBag.Semesters = semesters;
             ViewBag.Message = courseManager.Save(course);
+             ModelState.Clear();
             return View();
         }
         //Change by sayed

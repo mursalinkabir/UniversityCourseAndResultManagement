@@ -1,0 +1,72 @@
+﻿@using System.Web.UI.WebControls
+@using UniversityCourseAndResultManagement.Models
+@model UniversityCourseAndResultManagement.Models.CourseSchedule
+@{
+    ViewBag.Title = "View Class Schedule and Room Allocation Information";
+    var dept = ViewBag.Departments;
+
+    var schedule = ViewBag.Schedule;
+}
+
+    <div>
+        
+        
+
+        <fieldset><legend>
+                      View Class Schedule and Room Allocation Information
+                  </legend>
+        <form method="Post" id="form">
+            <table>
+                <tr>
+
+                    <td>@Html.LabelFor(m => m.DepartmentId)</td>
+
+                    <td>
+                        @Html.DropDownListFor(model => model.DepartmentId, new SelectList(dept, "Id", "Name"), "-- Select Department--")
+
+                    </td>
+
+            
+                    <td border:0px><h2>@Html.ValidationMessageFor(m => m.DepartmentId)</h2> </td>
+
+                </tr>
+
+            </table>
+
+        </form>
+            
+
+        <table>
+
+            @if (ViewBag.PostBack)
+            {
+
+                <tr>Schedule Information</tr>
+                <tr><th width="100px" bgcolor=" #e0e0d1">Course Code</th><th width="200px" bgcolor="#e0e0d1">Name</th><th width="400px" bgcolor="#e0e0d1">Schedule Info</th></tr>
+                foreach (var items in schedule)
+                {
+                    <tr>
+                        <td width="100px"> @items.CourseCode </td>
+                        <td width="200px"> @items.CourseName </td>
+                       
+                        <td width="400px">@items.ScheduleInfo</td>
+                               </tr>
+                }
+            }
+
+        </table>
+
+       </fieldset>
+
+    </div>
+   
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#DepartmentId").change(function () {
+               
+                $("#form").submit();
+            });
+        });
+    </script>
+}

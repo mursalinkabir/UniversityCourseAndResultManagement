@@ -164,6 +164,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AllocateClassController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\CourseSchedueController.cs" />
     <Compile Include="Controllers\CourseViewController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\EnrollCourseController.cs" />
@@ -171,12 +172,12 @@
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\StudentResultController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
-
+    <Compile Include="Controllers\UnallocateClassRoomController.cs" />
+    <Compile Include="Controllers\UnassignCourseController.cs" />
     <Compile Include="Controllers\ViewResultController.cs" />
-
     <Compile Include="Core\BLL\AllocateClassRoomManager.cs" />
-
     <Compile Include="Core\BLL\CourseManager.cs" />
+    <Compile Include="Core\BLL\CourseScheduleManager.cs" />
     <Compile Include="Core\BLL\CourseViewManager.cs" />
     <Compile Include="Core\BLL\DepartmentManager.cs" />
     <Compile Include="Core\BLL\DesignationManager.cs" />
@@ -186,8 +187,11 @@
     <Compile Include="Core\BLL\StudentManager.cs" />
     <Compile Include="Core\BLL\StudentResultManager.cs" />
     <Compile Include="Core\BLL\TeacherManager.cs" />
+    <Compile Include="Core\BLL\UnallocateClassRoomManager.cs" />
+    <Compile Include="Core\BLL\UnassignCourseManager.cs" />
     <Compile Include="Core\Gateway\AllocateClassRoomGateway.cs" />
     <Compile Include="Core\Gateway\CourseGateway.cs" />
+    <Compile Include="Core\Gateway\CourseScheduleGateway.cs" />
     <Compile Include="Core\Gateway\CourseViewGateway.cs" />
     <Compile Include="Core\Gateway\DepartmentGateway.cs" />
     <Compile Include="Core\Gateway\DesignationGateway.cs" />
@@ -197,12 +201,15 @@
     <Compile Include="Core\Gateway\StudentGateway.cs" />
     <Compile Include="Core\Gateway\StudentResultGateway.cs" />
     <Compile Include="Core\Gateway\TeacherGateway.cs" />
+    <Compile Include="Core\Gateway\UnallocateClassRoomGateway.cs" />
+    <Compile Include="Core\Gateway\UnassignCourseGateway.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AllocateClassRoom.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\CourseSchedule.cs" />
     <Compile Include="Models\CourseView.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Designation.cs" />
@@ -284,14 +291,14 @@
     <Content Include="Views\CourseView\ViewCourse.cshtml" />
     <Content Include="Views\Student\SaveStudent.cshtml" />
     <Content Include="Views\EnrollCourse\EnrollInACourse.cshtml" />
-
     <Content Include="Views\StudentResult\Index.cshtml" />
     <Content Include="Views\StudentResult\SaveStudentResult.cshtml" />
     <Content Include="Views\ViewResult\ShowResult.cshtml" />
     <Content Include="Views\ViewResult\ShowResult2.cshtml" />
-
     <None Include="Views\AllocateClass\AllocateClassRoom.cshtml" />
-
+    <Content Include="Views\CourseSchedue\CourseSchedule.cshtml" />
+    <Content Include="Views\UnassignCourse\UnassignCourse.cshtml" />
+    <Content Include="Views\UnallocateClassRoom\UnallocateClassRoom.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
