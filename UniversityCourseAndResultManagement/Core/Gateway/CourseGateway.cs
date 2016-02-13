@@ -228,7 +228,9 @@ namespace UniversityCourseAndResultManagement.Core.Gateway
         {
             connection.ConnectionString = connectionString;
 
-            string query = "SELECT Course.Code AS CourseCode,Course.Name AS CourseName, Grade FROM Course INNER JOIN EnrollCourse ON Course.Id= EnrollCourse.CourseId LEFT JOIN  StudentResult ON EnrollCourse.RegNo= StudentResult.RegNo  WHERE EnrollCourse.RegNo= '" + regNo + "'";
+            //string query = "SELECT Course.Code AS CourseCode,Course.Name AS CourseName, Grade FROM Course INNER JOIN EnrollCourse ON Course.Id= EnrollCourse.CourseId LEFT JOIN  StudentResult ON EnrollCourse.CourseId= StudentResult.CourseId  WHERE EnrollCourse.RegNo= '" + regNo + "'";
+            string query = "SELECT Course.Code AS CourseCode,Course.Name AS CourseName, StudentResult.Grade,StudentResult.RegNo FROM Course LEFT JOIN StudentResult ON Course.Id= StudentResult.CourseId  WHERE StudentResult.RegNo= '" + regNo + "'";
+
 
             //string query = "SELECT Course.Code AS CourseCode,Course.Name AS CourseName FROM Course INNER JOIN EnrollCourse ON Course.Id= EnrollCourse.CourseId  WHERE EnrollCourse.RegNo= '" + regNo + "'";
 

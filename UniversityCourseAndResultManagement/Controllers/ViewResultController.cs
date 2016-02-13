@@ -69,35 +69,35 @@ namespace UniversityCourseAndResultManagement.Controllers
             return View();
 
         }
-        public ActionResult GeneratePDF(ViewResults viewResults, string RegNo)
-        {
-            ViewBag.PostBack = false;
-            List<Student> students = studentManager.GetAllStudent();
-            ViewBag.StudentList = students;
-            if (RegNo != String.Empty)
-            {
-                ViewBag.PostBack = true;
-            }
-            Student Students = studentManager.GetAllStudentbyRegNo(RegNo);
+        //public ActionResult GeneratePDF(ViewResults viewResults, string RegNo)
+        //{
+        //    ViewBag.PostBack = false;
+        //    List<Student> students = studentManager.GetAllStudent();
+        //    ViewBag.StudentList = students;
+        //    if (RegNo != String.Empty)
+        //    {
+        //        ViewBag.PostBack = true;
+        //    }
+        //    Student Students = studentManager.GetAllStudentbyRegNo(RegNo);
 
-            ViewBag.studentLists = Students;
+        //    ViewBag.studentLists = Students;
 
-            StudentView studentView = studentManager.GetAllDepartmentNameByRegNo(RegNo);
-            ViewBag.DepartmentName = studentView;
-            List<ViewResults> results = courseManager.GetAllResult(RegNo);
-            ViewBag.Results = results;
-            //List<Student> students = studentManager.GetAllStudent();
-            //ViewBag.StudentList = students;
-            //  List<ViewResults> results=  ViewBag.Results;
-            return new ActionAsPdf(
-                "ShowResult2",
-                new {viewResults = viewResults, RegNo=RegNo}
+        //    StudentView studentView = studentManager.GetAllDepartmentNameByRegNo(RegNo);
+        //    ViewBag.DepartmentName = studentView;
+        //    List<ViewResults> results = courseManager.GetAllResult(RegNo);
+        //    ViewBag.Results = results;
+        //    //List<Student> students = studentManager.GetAllStudent();
+        //    //ViewBag.StudentList = students;
+        //    //  List<ViewResults> results=  ViewBag.Results;
+        //    return new ActionAsPdf(
+        //        "ShowResult2",
+        //        new {viewResults = viewResults, RegNo=RegNo}
                 
-                )
-            {FileName = "ResultView.pdf"};
+        //        )
+        //    {FileName = "ResultView.pdf"};
 
 
-        }
+        //}
 
 
         public JsonResult GetStudentByRegNo(string RegNo)
